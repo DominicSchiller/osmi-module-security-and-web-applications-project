@@ -1,0 +1,18 @@
+{
+  "name": "poc-epa-backend",
+  "version": "0.0.1",
+  "description": "The backend of the PoC to demonstrate step-up authentication with Keycloak and the Open Policy Agent on the example of a simplified version of the electronic patient record. ",
+  "main": "index.js",
+  "scripts": {
+    "pm2": "pm2 start processes.json --no-daemon",
+    "start": "node ./bin/www",
+    "test": "jest",
+    "migrate": "node ./bin/migrate.js"
+  },
+  "author": "Dominic Schiller",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "pm2": "^5.2.0"
+  }
+}

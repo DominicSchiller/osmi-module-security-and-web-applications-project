@@ -1,0 +1,58 @@
+version: 2.5.1
+
+# volumes:
+#   mariadb_data:
+#     driver: local
+#     name: "MariaDB_Data"
+
+services:
+#   # MariaDB Service
+#   mariadb:
+#     image: mariadb
+#     container_name: mariadb
+#     restart: on-failure:3
+#     ports:
+#       - ${MARIADB_PORT}:3306
+#     volumes:
+#       - mariadb_data:/var/lib/mysql
+#     env_file: env/mariadb.${RUN_ENV}.env
+#     healthcheck:
+#         test: mysqladmin ping -h 127.0.0.1 -u $$MARIADB_USER --password=$$MARIADB_PASSWORD --silent
+
+#   # OAuth  Service: KeyCloak
+#   keycloak: 
+#     image: quay.io/keycloak/keycloak:18.0.0
+#     container_name: keycloak
+#     restart: on-failure:3
+#     ports:
+#       - ${KEYCLOAK_PORT}:8080
+#     volumes:
+#       - ./data/keycloak/realm-exports:/opt/keycloak/data/import
+#     env_file: env/keycloak.${RUN_ENV}.env
+#     command:
+#       #- --verbose
+#       - start-dev --import-realm
+#     depends_on: 
+#       - mariadb
+
+  # NodeJS / ExpressJS Backend Server
+  epa-backend:
+    container_name: epa-backend
+    build: backend/.
+    image: dominicschiller/poc-epa-backend
+    ports:
+      - ${EPA_BACKEND_PORT}:3000
+    restart: on-failure:3
+    # depends_on: 
+    #   - mariadb
+
+  # # Ionic / Angular Frontend PWA
+  # epa-frontend:
+  #   container_name: epa-frontend
+  #   build: frontend/.
+  #   image: dominicschiller/poc-epa-frontend
+  #   ports:
+  #     - ${EPA_FRONTEND_PORT}:80
+  #   restart: on-failure:3
+  #   depends_on: 
+  #     - epa-backend
