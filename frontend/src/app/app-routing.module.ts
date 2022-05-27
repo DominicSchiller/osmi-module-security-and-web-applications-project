@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { KeycloakGuard } from './guards/keycloak.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'public',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'public',
     pathMatch: 'full'
+  },
+  {
+    path: 'restricted-space',
+    canActivate: [KeycloakGuard],
+    loadChildren: () => import('./restricted-space/restricted-space.module').then( m => m.RestrictedSpacePageModule),
   },
 ];
 

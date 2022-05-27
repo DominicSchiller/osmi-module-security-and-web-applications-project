@@ -8,7 +8,7 @@ RUN npm install -g ionic
 #   npm install --quiet && \
 #   apk del native-deps
 RUN apk add g++ make python3
-RUN npm install
+RUN npm install --force
 COPY ./ /app/
 RUN ionic build --prod
 

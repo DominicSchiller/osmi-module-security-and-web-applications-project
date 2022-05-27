@@ -32,6 +32,7 @@ services:
     command:
       #- --verbose
       - start-dev --import-realm
+      # - start-dev
     depends_on: 
       - mariadb
 

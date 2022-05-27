@@ -1,0 +1,26 @@
+{
+  "realm" : "epa-poc",
+  "users" : [ {
+    "id" : "d96abcea-3c16-4020-aa68-c07cddda3acc",
+    "createdTimestamp" : 1653684469400,
+    "username" : "test-patient",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Test",
+    "lastName" : "Patient",
+    "email" : "test-patient@epa-poc.de",
+    "credentials" : [ {
+      "id" : "6550cebf-2c9e-4ca1-ad52-e9ed666fa972",
+      "type" : "password",
+      "createdDate" : 1653684479454,
+      "secretData" : "{\"value\":\"0kCZXZVR+5MJ6JVb7HT8bxRsONRqS6XjIQpvGyhRcnNQe76FT114CuhBTrLT66VGoCU6DNFIc+twIJ0aZkYorQ==\",\"salt\":\"b+t9HVPRm15kgsIwVSL/2A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-epa-poc" ],
+    "notBefore" : 0,
+    "groups" : [ "/patient" ]
+  } ]
+}
