@@ -15,5 +15,5 @@ RUN ionic build --prod
 # deploy
 FROM nginx:1.21-alpine
 EXPOSE 80
-#COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/www/ /usr/share/nginx/html
