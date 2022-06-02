@@ -11,5 +11,7 @@
 
 <ion-content class="ion-padding">
   <h2 *ngIf="userProfile">
-    Willkommen<br />{{ username() }}</h2>
+    Willkommen<br />{{ username() }}
+  </h2>
+  <ion-button *ngIf="!isSteppedUp" (click)="stepUp()">Step-Up</ion-button>
 </ion-content>

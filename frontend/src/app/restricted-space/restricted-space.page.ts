@@ -10,6 +10,7 @@ import { KeycloakProfile } from 'keycloak-js';
 export class RestrictedSpacePage implements OnInit {
 
   public isLoggedIn = false;
+  public isSteppedUp = false 
   public userProfile: KeycloakProfile | null = null;
   
   constructor(private keycloakService: KeycloakService) {}
@@ -25,6 +26,9 @@ export class RestrictedSpacePage implements OnInit {
     this.keycloakService.getToken()
       .then(token => {
         console.info("Token received: ", token)
+
+        let access_token = JSON.parse(atob(token.split('.')[1]));
+        this.isSteppedUp = access_token.acr == "aal2"
       })
       .catch(error => {
         console.error(error)
@@ -37,12 +41,13 @@ export class RestrictedSpacePage implements OnInit {
           }
         }
       });
-
-
   }
 
-  public login() {
-    this.keycloakService.login();
+  public async stepUp(toAcr: string) {
+    await this.keycloakService.login({
+      redirectUri: window.location.origin + "/restricted-space",
+      acr: { values: ["epa-poc-aal2"], essential: false }
+    })
   }
 
   public logout() {
