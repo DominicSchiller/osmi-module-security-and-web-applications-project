@@ -43,10 +43,10 @@ export class RestrictedSpacePage implements OnInit {
       });
   }
 
-  public async stepUp(toAcr: string) {
+  public async stepUp(acr: string) {
     await this.keycloakService.login({
       redirectUri: window.location.origin + "/restricted-space",
-      acr: { values: ["epa-poc-aal2"], essential: false }
+      acr: { values: [acr], essential: false }
     })
   }
 
