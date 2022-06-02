@@ -31,7 +31,7 @@ services:
 
   opa:
     # image: openpolicyagent/opa:0.40.0-rootless
-    image: openpolicyagent/opa:0.40.0-static
+    image: openpolicyagent/opa:0.40.0-rootless
     container_name: opa
     restart: on-failure:3
     ports:
@@ -41,7 +41,7 @@ services:
       - "--server"
       - "--log-format=json-pretty"
       - "--set=decision_logs.console=true"
-      - "--set=services.nginx.url=http://bundle_server"
+      - "--set=services.nginx.url=http://opa_bundle_server"
       - "--set=bundles.nginx.service=nginx"
       - "--set=bundles.nginx.resource=bundle.tar.gz"
       - "--set=bundles.nginx.polling.min_delay_seconds=10"
