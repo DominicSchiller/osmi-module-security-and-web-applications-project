@@ -17,7 +17,7 @@
 # COPY . .
 # RUN npm install --production
 # RUN npm install -g @vercel/ncc
-# RUN ncc build app.js -m -o dist --no-cache
+# RUN ncc build app.ts -m -o dist --no-cache
 # RUN npm prune --production
 
 # FROM node:16-alpine3.14
@@ -32,7 +32,7 @@ COPY . .
 RUN npm install --production
 RUN npm prune --production
 RUN npm install -g @vercel/ncc
-RUN ncc build app.js -m -o dist --no-cache
+RUN ncc build app.ts -m -o dist --no-cache
 RUN rm -rf node_modules
 RUN rm package.json
 RUN npm install pm2 --production
