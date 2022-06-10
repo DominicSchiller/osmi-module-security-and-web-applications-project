@@ -1,18 +1,40 @@
 {
   "name": "poc-epa-backend",
   "version": "0.0.1",
-  "description": "The backend of the PoC to demonstrate step-up authentication with Keycloak and the Open Policy Agent on the example of a simplified version of the electronic patient record. ",
+  "description": "The backend of the PoC to demonstrate step-up authentication with Keycloak and the Open Policy Agent on the example of a simplified version of the electronic patient record.",
   "main": "index.js",
   "scripts": {
+    "start-tsc-dist": "node dist/server.js",
+    "start-dev": "nodemon",
+    "tsc-build": "npm run delete-dist && tsc -p . && npm run minify",
+    "ncc-build": "npm run delete-dist && ncc build ./src/server.ts -m -o ./dist --no-cache",
+    "minify": "uglifyjs -c -m --mangle-props -o dist/server.min.js -- dist/server.js",
     "pm2": "pm2 start processes.json --no-daemon",
-    "start": "node ./bin/www",
-    "test": "jest",
-    "migrate": "node ./bin/migrate.js"
+    "delete-dist": "rm -rf ./dist"
   },
+  "keywords": [],
   "author": "Dominic Schiller",
   "license": "MIT",
   "dependencies": {
+    "dayjs": "^1.11.3",
     "express": "^4.18.1",
-    "pm2": "^5.2.0"
+    "express-pino-logger": "^7.0.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.3.6",
+    "pino": "^8.0.0",
+    "typescript": "^4.7.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/lodash": "^4.14.182",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^17.0.41",
+    "@vercel/ncc": "^0.34.0",
+    "jsmin": "^1.0.1",
+    "nodemon": "^2.0.16",
+    "pino-pretty": "^8.0.0",
+    "pm2": "^5.2.0",
+    "ts-node": "^10.8.1",
+    "uglify-js": "^3.16.0"
   }
 }
