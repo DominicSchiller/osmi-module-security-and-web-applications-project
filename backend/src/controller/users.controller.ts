@@ -16,10 +16,13 @@ export async function createUserHandler(req: Request, res: Response) {
 
 export async function findUserHandler(req: Request, res: Response) {
     try {
+        let authorizationHeader = req.headers.authorization
+        if (!authorizationHeader) { res.status(400).send(Error("unauthorized access")) }
+
         const user = await findUser({
             firstName: req.body.firstName,
             lastName: req.body.lastName
-        }) as UserDocument;
+        }, authorizationHeader!) as UserDocument;
         return res.send(JSON.stringify(user))
     } catch (error: any | unknown) {
         res.status(409).send(error.message);
