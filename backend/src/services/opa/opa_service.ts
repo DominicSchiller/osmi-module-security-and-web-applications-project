@@ -3,7 +3,7 @@ import {firstValueFrom, Observable} from "rxjs";
 import {Response} from "@rxjsx/request/lib/models";
 import log from "../../logger/logger";
 import {request} from "@rxjsx/request";
-import {Opa_response} from "./models/opa_response";
+import {OPAResponse} from "./models/opa_response";
 import {OPAGetUserInputData, OPARequestInput} from "./models/opa_request_input";
 import {KeycloakUserInfo} from "../keycloak/models/user_info";
 
@@ -33,10 +33,10 @@ export class OPAService {
     //</editor-fold>
 
     //<editor-fold desc="Keycloak API">
-    async validateGetUser(requestInput: OPARequestInput<OPAGetUserInputData>): Promise<Opa_response> {
+    async validateGetUser(requestInput: OPARequestInput<OPAGetUserInputData>): Promise<OPAResponse> {
         try {
             return await OPAService.sendRequest(
-                request.post<OPARequestInput<OPAGetUserInputData>, Opa_response>(
+                request.post<OPARequestInput<OPAGetUserInputData>, OPAResponse>(
                     this.getUrl(OPAPolicyEndpoint.getUser),
                     requestInput
                 )

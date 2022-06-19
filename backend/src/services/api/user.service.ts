@@ -20,14 +20,14 @@ export async function findUser(filterQuery: FilterQuery<UserDocument>, authoriza
         let accessToken = KeycloakUtils.getAccessTokenFromAuthorizationHeader(authorizationHeader)
         let keycloakUserInfo = await KeycloakService.shared.getUserInfo(authorizationHeader)
         let opaResponse = await OPAService.shared.validateGetUser(
-            OPARequestInputFactory.createGetUserInput(keycloakUserInfo," accessToken!")
+            OPARequestInputFactory.createGetUserInput(keycloakUserInfo, accessToken!)
         )
-        if (opaResponse.result.allow) {
+        if (!opaResponse.result.authorization.isAllowed) {
             // (3) fetch database data
-            return User.findOne(filterQuery).lean()
+            log.error(opaResponse.result.authorization.reasons)
+            return Promise.reject(new Error(JSON.stringify(opaResponse.result.authorization)))
         }
-        log.error(opaResponse.result.error)
-        return Promise.reject(opaResponse.result.error)
+        return User.findOne(filterQuery).lean()
     } catch (error: any | unknown) {
         log.error(error)
         throw error

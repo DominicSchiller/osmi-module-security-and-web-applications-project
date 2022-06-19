@@ -1,25 +1,25 @@
-export class Opa_response {
+export class OPAResponse {
 
     constructor(
         readonly decision_id: string,
-        readonly result: OPAResult
+        readonly result: OPAResponseResult
     ) {}
 }
 
-export class OPAResult {
-    constructor(
-        readonly allow: boolean,
-        readonly error?: OPAError
-    ) {}
+export interface OPAResponseResult {
+    authorization: OPAAuthorizationResult
 }
 
-export class OPAError {
-    constructor(
-        readonly statusCode: OPAPolicyValidationErrorCode,
-        readonly errorMessage: string
-    ) {}
+export interface OPAAuthorizationResult {
+    isAllowed: boolean
+    reasons?: []
 }
 
-export enum OPAPolicyValidationErrorCode {
+export interface OPAAuthorizationDeniedReason {
+    status: OPAAuthorizationDeniedStatus
+    message: string
+}
+
+export enum OPAAuthorizationDeniedStatus {
     badAccessToken
 }
