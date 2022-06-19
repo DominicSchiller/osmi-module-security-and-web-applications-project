@@ -5,7 +5,7 @@
     "createdTimestamp" : 1653684469400,
     "username" : "test-patient",
     "enabled" : true,
-    "totp" : false,
+    "totp" : true,
     "emailVerified" : true,
     "firstName" : "Test",
     "lastName" : "Patient",

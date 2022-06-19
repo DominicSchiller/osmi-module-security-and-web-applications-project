@@ -22,11 +22,12 @@ export async function findUser(filterQuery: FilterQuery<UserDocument>, authoriza
         let opaResponse = await OPAService.shared.validateGetUser(
             OPARequestInputFactory.createGetUserInput(keycloakUserInfo, accessToken!)
         )
+        // (2) verify opa policies
         if (!opaResponse.result.authorization.isAllowed) {
-            // (3) fetch database data
             log.error(opaResponse.result.authorization.reasons)
             return Promise.reject(new Error(JSON.stringify(opaResponse.result.authorization)))
         }
+        // (3) fetch database data
         return User.findOne(filterQuery).lean()
     } catch (error: any | unknown) {
         log.error(error)
