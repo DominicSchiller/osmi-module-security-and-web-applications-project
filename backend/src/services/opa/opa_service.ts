@@ -1,28 +1,30 @@
-import {request} from '@rxjsx/request';
-import {KeycloakEndpoint} from "./keycloak_endpoint";
-import log from "../logger/logger";
+import {OPAPolicyEndpoint} from "./models/opa_policy_endpoint";
 import {firstValueFrom, Observable} from "rxjs";
-import {KeycloakUserInfo} from "./models/user_info";
 import {Response} from "@rxjsx/request/lib/models";
+import log from "../../logger/logger";
+import {request} from "@rxjsx/request";
+import {Opa_response} from "./models/opa_response";
+import {OPAGetUserInputData, OPARequestInput} from "./models/opa_request_input";
+import {KeycloakUserInfo} from "../keycloak/models/user_info";
 
-export class KeycloakService {
 
+export class OPAService {
     //<editor-fold desc="Singleton">
-    private static instance: KeycloakService;
+    private static instance: OPAService;
 
-    static get shared(): KeycloakService {
+    static get shared(): OPAService {
         if (this.instance) {
             return this.instance
         }
-        this.instance = new KeycloakService()
+        this.instance = new OPAService()
         return this.instance
     }
     //</editor-fold>
 
     //<editor-fold desc="Properties">
     private rootUrl: string = "http://localhost"
-    private port: number = 8181
-    private epaPoCRealm: string = "realms/epa-poc"
+    private port: number = 8282
+    private epaPocDataPath: string = "v1/data/epapoc"
 
     //</editor-fold>
 
@@ -31,12 +33,13 @@ export class KeycloakService {
     //</editor-fold>
 
     //<editor-fold desc="Keycloak API">
-    async getUserInfo(authorizationHeader: string): Promise<KeycloakUserInfo> {
+    async validateGetUser(requestInput: OPARequestInput<OPAGetUserInputData>): Promise<Opa_response> {
         try {
-            return await KeycloakService.sendRequest(
-                request.get<KeycloakUserInfo>(this.getUrl(KeycloakEndpoint.userInfo), {
-                    Authorization: authorizationHeader
-        })
+            return await OPAService.sendRequest(
+                request.post<OPARequestInput<OPAGetUserInputData>, Opa_response>(
+                    this.getUrl(OPAPolicyEndpoint.getUser),
+                    requestInput
+                )
             )
         } catch (error: any | unknown) {
             log.error(error)
@@ -45,8 +48,9 @@ export class KeycloakService {
     }
     //</editor-fold>
 
-    private getUrl(endpoint: KeycloakEndpoint): string {
-        return `${this.rootUrl}:${this.port}/${this.epaPoCRealm}/${endpoint}`
+    //<editor-fold desc="Helper Functions">
+    private getUrl(policyEndpoint: OPAPolicyEndpoint): string {
+        return `${this.rootUrl}:${this.port}/${this.epaPocDataPath}/${policyEndpoint}`
     }
 
     private static async sendRequest<Result>(request: Observable<Response<Result>>): Promise<Result> {
@@ -64,4 +68,5 @@ export class KeycloakService {
             throw error
         }
     }
+    //</editor-fold>
 }

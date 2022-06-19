@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
-import {createUser, findUser} from "../services/user.service";
+import {createUser, findUser} from "../services/api/user.service";
 import { omit } from "lodash";
-import UserModel, {UserDocument} from "../db/models/user.model";
+import {UserDocument} from "../db/models/user.model";
 
 export async function createUserHandler(req: Request, res: Response) {
     try {

@@ -1,8 +1,4 @@
 {
-    "method": "GET",
-    "url": "api/user",
-    "firstName": "Jennifer",
-    "lastName": "Schräder",
     "keycloak": {
         "user_info": {
             "sub": "d96abcea-3c16-4020-aa68-c07cddda3acc",

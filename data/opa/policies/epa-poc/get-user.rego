@@ -1,9 +1,12 @@
 package epapoc.getuser
+
 import data.epapoc.common.jwt
 
-default allow := false
+default authorization := {
+    "isAllowed": false
+}
 
 # allow is true if ALL of the body statements are true
-allow {
-  jwt.is_jwt_token_valid
+authorization = authorization {
+  authorization := jwt.token_verification
 }
