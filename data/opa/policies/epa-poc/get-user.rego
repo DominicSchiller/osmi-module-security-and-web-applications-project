@@ -1,6 +1,7 @@
 package epapoc.getuser
 
 import data.epapoc.common.jwt
+import input.attributes.request.http
 
 default authorization := {
     "isAllowed": false

@@ -1,10 +1,9 @@
 import {request} from '@rxjsx/request';
 import {KeycloakEndpoint} from "./keycloak_endpoint";
 import log from "../../logger/logger";
-import {firstValueFrom, Observable} from "rxjs";
 import {KeycloakUserInfo} from "./models/user_info";
-import {Response} from "@rxjsx/request/lib/models";
 import NetworkManger from "../common/networking/network_manager";
+import {Request} from "express";
 
 export class KeycloakService {
 
@@ -32,11 +31,11 @@ export class KeycloakService {
     //</editor-fold>
 
     //<editor-fold desc="Keycloak API">
-    async getUserInfo(authorizationHeader: string): Promise<KeycloakUserInfo> {
+    async getUserInfo(req: Request): Promise<KeycloakUserInfo> {
         try {
             return await NetworkManger.sendRequest(
                 request.get<KeycloakUserInfo>(this.getUrl(KeycloakEndpoint.userInfo), {
-                    Authorization: authorizationHeader
+                    Authorization: req.headers.authorization ?? ""
                 })
             )
         } catch (error: any | unknown) {

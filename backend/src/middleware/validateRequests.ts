@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from "express";
+import {Request, Response} from "express";
 import log from "../logger/logger";
 import {OPAPolicyEndpoint} from "../services/opa/models/opa_policy_endpoint";
 import {KeycloakUtils} from "../services/keycloak/utils/keycloak_utils";
@@ -10,15 +10,11 @@ const validateRequest = (opaEndPoint: OPAPolicyEndpoint) => async (
     req: Request,
     res: Response
 ) => {
-    let authorizationHeader = req.headers.authorization
-    if (!authorizationHeader) { res.status(400).send(Error("unauthorized access")) }
-
     try {
         // (1) verify keycloak access token
-        let accessToken = KeycloakUtils.getAccessTokenFromAuthorizationHeader(authorizationHeader!)
-        let keycloakUserInfo = await KeycloakService.shared.getUserInfo(authorizationHeader!)
-        let opaResponse = await OPAService.shared.validateGetUser(
-            OPARequestInputFactory.createInput(keycloakUserInfo, accessToken!, res.locals.fetchedData)
+        let keycloakUserInfo = await KeycloakService.shared.getUserInfo(req)
+        let opaResponse = await OPAService.shared.validate(
+            OPARequestInputFactory.createInput(req, keycloakUserInfo, res.locals.fetchedData)
         )
         // (2) verify opa policies
         if (!opaResponse.result.authorization.isAllowed) {

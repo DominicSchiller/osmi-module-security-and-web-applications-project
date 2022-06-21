@@ -31,7 +31,7 @@ export class OPAService {
     //</editor-fold>
 
     //<editor-fold desc="Keycloak API">
-    async validateGetUser(requestInput: OPARequestInput): Promise<OPAResponse> {
+    async validate(requestInput: OPARequestInput): Promise<OPAResponse> {
         try {
             return await NetworkManger.sendRequest(
                 request.post<OPARequestInput, OPAResponse>(
