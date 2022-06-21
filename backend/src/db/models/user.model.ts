@@ -9,12 +9,12 @@ export interface UserDocument extends Document {
     firstName: string;
     lastName: string;
     age: number;
-    gender: string;
+    gender: Gender;
     address: Types.ObjectId;
     email: string;
     phone: string;
     birthday: Date;
-};
+}
 
 const UserSchema = new Schema<UserDocument>({
     firstName: { type: String, required: true },

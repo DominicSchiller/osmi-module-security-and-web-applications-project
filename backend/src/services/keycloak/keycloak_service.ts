@@ -4,6 +4,7 @@ import log from "../../logger/logger";
 import {firstValueFrom, Observable} from "rxjs";
 import {KeycloakUserInfo} from "./models/user_info";
 import {Response} from "@rxjsx/request/lib/models";
+import NetworkManger from "../common/networking/network_manager";
 
 export class KeycloakService {
 
@@ -33,10 +34,10 @@ export class KeycloakService {
     //<editor-fold desc="Keycloak API">
     async getUserInfo(authorizationHeader: string): Promise<KeycloakUserInfo> {
         try {
-            return await KeycloakService.sendRequest(
+            return await NetworkManger.sendRequest(
                 request.get<KeycloakUserInfo>(this.getUrl(KeycloakEndpoint.userInfo), {
                     Authorization: authorizationHeader
-        })
+                })
             )
         } catch (error: any | unknown) {
             log.error(error)
@@ -47,21 +48,5 @@ export class KeycloakService {
 
     private getUrl(endpoint: KeycloakEndpoint): string {
         return `${this.rootUrl}:${this.port}/${this.epaPoCRealm}/${endpoint}`
-    }
-
-    private static async sendRequest<Result>(request: Observable<Response<Result>>): Promise<Result> {
-        try {
-            let response: Response<Result> = await firstValueFrom(request)
-            if (response === undefined) {
-                return Promise.reject(Error("No response received"))
-            }
-            if (response.statusCode! >= 400) {
-                return Promise.reject(Error(response.body))
-            }
-            return response.json()
-        } catch (error: any | unknown) {
-            log.error(error)
-            throw error
-        }
     }
 }

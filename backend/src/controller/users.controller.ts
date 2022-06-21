@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
-import {createUser, findUser} from "../services/api/user.service";
 import { omit } from "lodash";
 import {UserDocument} from "../db/models/user.model";
+import {createUser, findUser} from "../services/api/user/user.service";
 
 export async function createUserHandler(req: Request, res: Response) {
     try {
@@ -22,7 +22,7 @@ export async function findUserHandler(req: Request, res: Response) {
         const user = await findUser({
             firstName: req.body.firstName,
             lastName: req.body.lastName
-        }, authorizationHeader!) as UserDocument;
+        }) as UserDocument;
         return res.send(JSON.stringify(user))
     } catch (error: any | unknown) {
         res.status(409).send(error.message);

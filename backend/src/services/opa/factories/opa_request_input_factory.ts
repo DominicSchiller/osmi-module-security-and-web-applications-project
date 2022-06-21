@@ -1,17 +1,18 @@
 import {KeycloakUserInfo} from "../../keycloak/models/user_info";
-import {OPAGetUserInputData, OPARequestInput} from "../models/opa_request_input";
+import {OPARequestInput} from "../models/opa_request_input";
 
 export class OPARequestInputFactory {
 
     private constructor() {/* plain static class */}
 
-    static createGetUserInput(keycloakUserInfo: KeycloakUserInfo, accessToken: string): OPARequestInput<OPAGetUserInputData> {
+    static createInput(keycloakUserInfo: KeycloakUserInfo, accessToken: string, fetchedData: any): OPARequestInput {
         return {
-            "input": {
-                "access_token": accessToken,
-                "keycloak": {
-                    "user_info": keycloakUserInfo
-                }
+            input: {
+                access_token: accessToken,
+                keycloak: {
+                    user_info: keycloakUserInfo
+                },
+                fetchedData: fetchedData
             }
         }
     }
