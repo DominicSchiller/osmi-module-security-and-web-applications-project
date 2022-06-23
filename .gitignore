@@ -1,3 +1,4 @@
 .DS_Store
 /.idea
 */**/.idea/
+/data/keycloak/extensions/optional-passwordless-required-action/target/
