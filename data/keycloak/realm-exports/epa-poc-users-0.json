@@ -5,7 +5,7 @@
     "createdTimestamp" : 1655900203336,
     "username" : "damberg",
     "enabled" : true,
-    "totp" : false,
+    "totp" : true,
     "emailVerified" : true,
     "firstName" : "Deborah",
     "lastName" : "Amberg",
@@ -16,10 +16,24 @@
       "createdDate" : 1655900273362,
       "secretData" : "{\"value\":\"J0IDjJWICnKRMgudnFjvpqERVszIgY0DPVOuxnuqOX13mT2dWcclh/9fpFiroPiU/gp7KLGxB4TtXvn5j/PGcQ==\",\"salt\":\"dLpOEcS+xaKlQuAtVXf9zg==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    }, {
+      "id" : "de07b523-2cda-4122-9de3-ab85fbe7fcd0",
+      "type" : "otp",
+      "userLabel" : "iPhone",
+      "createdDate" : 1655917147322,
+      "secretData" : "{\"value\":\"ksmR4UF4LRxiQm4WC4F9\"}",
+      "credentialData" : "{\"subType\":\"totp\",\"digits\":6,\"counter\":0,\"period\":30,\"algorithm\":\"HmacSHA1\"}"
+    }, {
+      "id" : "6b564836-a769-47ab-9128-b64eabab596d",
+      "type" : "webauthn-passwordless",
+      "userLabel" : "MacBook",
+      "createdDate" : 1655917178350,
+      "secretData" : "{}",
+      "credentialData" : "{\"aaguid\":\"00000000-0000-0000-0000-000000000000\",\"credentialId\":\"jZsJFsmIYotRd9N0UqZ9v/JGN0o=\",\"counter\":0,\"credentialPublicKey\":\"pQECAyYgASFYIMvC9wH2PSSkfyWtz0ZtZ3T6w0H3q7iPGxKasWED4nvZIlggUt10avJC3k-bPa10OvWEUFOhGLX3JZi-AzhY-en0Wdk\",\"attestationStatementFormat\":\"none\",\"transports\":[]}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -41,7 +55,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -63,7 +77,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -85,7 +99,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -107,7 +121,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -129,7 +143,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -151,7 +165,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -173,7 +187,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -195,7 +209,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -217,7 +231,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -239,7 +253,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -261,7 +275,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -283,7 +297,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -305,7 +319,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -327,7 +341,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -349,7 +363,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -371,7 +385,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -393,7 +407,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -415,7 +429,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -437,7 +451,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -473,7 +487,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   }, {
@@ -495,7 +509,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
@@ -517,7 +531,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
+    "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
   } ]
