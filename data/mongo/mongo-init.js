@@ -18,8 +18,8 @@ db.createCollection('patients');
 db.createCollection('doctors');
 db.createCollection('representatives');
 db.createCollection('addresses');
-db.createCollection('healthInsurances');
-db.createCollection('healthFacilities');
+db.createCollection('insurances');
+db.createCollection('facilities');
 
 function createOrUpdateAddress(
     street,
@@ -52,7 +52,7 @@ function createHealthInsurance(
         address: address._id
     };
 
-    db.healthInsurances.update(insuranceData, {
+    db.insurances.update(insuranceData, {
         $setOnInsert: insuranceData
     }, { upsert: true });
 }
@@ -70,7 +70,7 @@ function createHealthFacility(
         name: name,
         address: address._id
     };
-    db.healthFacilities.update(facilityData, {
+    db.facilities.update(facilityData, {
         $setOnInsert: facilityData
     }, { upsert: true });
 }
@@ -122,10 +122,10 @@ function createPatient(
     insuranceNumber
 ) {
     let userRecord = createUser(title, firstName, age, lastName, gender, street, city, zipCode, phone, birthday)
-    let healthInsurance = db.healthInsurances.findOne( {name: healthInsuranceName})
+    let healthInsurance = db.insurances.findOne( {name: healthInsuranceName})
     db.patients.insertOne({
         _id: keycloakId,
-        user: userRecord.insertedId,
+        personalDetails: userRecord.insertedId,
         healthInsurance: {
             company: healthInsurance._id,
             insuranceNumber: insuranceNumber
@@ -152,13 +152,13 @@ function createDoctor(
     discipline,
     facilityName
 ) {
-    let facility = db.healthFacilities.findOne({name: facilityName});
+    let facility = db.facilities.findOne({name: facilityName});
     let address = db.addresses.findOne({_id: facility.address})
 
     let userRecord = createUser(title, firstName, age, lastName, gender, address.street, address.city, address.zipCode, phone, birthday)
     db.doctors.insertOne({
         _id: keycloakId,
-        user: userRecord.insertedId,
+        personalDetails: userRecord.insertedId,
         discipline,
         facility: facility._id,
         patients: []

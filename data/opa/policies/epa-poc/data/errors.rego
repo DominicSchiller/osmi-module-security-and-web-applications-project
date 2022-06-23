@@ -21,6 +21,6 @@ bad_access_token_username := {
 }
 
 access_level_2_required := {
-    "status": 1,
+    "status": 2,
     "message": "A minimum access level of 2 is required"
 }
