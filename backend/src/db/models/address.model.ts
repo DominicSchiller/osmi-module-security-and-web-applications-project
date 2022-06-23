@@ -1,6 +1,7 @@
 import {model, Schema, Types, Document } from 'mongoose';
+import {DBCollectionName} from "./db_collection_name";
 
-interface AddressDocument extends Document {
+export interface AddressDocument extends Document {
     street: string;
     city: string;
     zipCode: string;
@@ -14,6 +15,6 @@ const AddressSchema = new Schema<AddressDocument>({
     autoCreate: true
 });
 
-const Address = model<AddressDocument>('Addresses', AddressSchema);
+const Address = model<AddressDocument>(DBCollectionName.addresses, AddressSchema);
 
 export default Address;
