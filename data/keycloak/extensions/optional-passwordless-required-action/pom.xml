@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>github.com.DominicSchiller</groupId>
-    <artifactId>optional-passwordless-required-action</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>dominicschiller.keycloak</groupId>
+    <artifactId>requireaction</artifactId>
+    <version>1.0</version>
 
     <packaging>jar</packaging>
 
@@ -43,7 +43,7 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>optional-passwordless-required-action-${project.version}</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>

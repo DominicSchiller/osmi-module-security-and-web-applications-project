@@ -1,3 +1,5 @@
+package dominicschiller.keycloak.requireaction;
+
 import org.keycloak.authentication.InitiatedActionSupport;
 import org.keycloak.authentication.RequiredActionContext;
 import org.keycloak.authentication.RequiredActionProvider;
@@ -11,32 +13,36 @@ public class OptionalPasswordlessRequiredAction implements RequiredActionProvide
     public static final String PROVIDER_ID = "choose-passwordless-ra";
     private static final String USE_PASSWORDLESS_FIELD = "use_passwordless";
 
+    @Override
     public InitiatedActionSupport initiatedActionSupport() {
         return InitiatedActionSupport.SUPPORTED;
     }
 
+    @Override
     public void evaluateTriggers(RequiredActionContext requiredActionContext) {
         if (requiredActionContext.getUser().getFirstAttribute(USE_PASSWORDLESS_FIELD) == null) {
             requiredActionContext.getUser().addRequiredAction(PROVIDER_ID);
         }
     }
 
+    @Override
     public void requiredActionChallenge(RequiredActionContext requiredActionContext) {
         // show initial form
         requiredActionContext.challenge(createForm(requiredActionContext, null));
     }
 
+    @Override
     public void processAction(RequiredActionContext context) {
         // submitted form
 
         UserModel user = context.getUser();
 
         MultivaluedMap<String, String> formData = context.getHttpRequest().getDecodedFormParameters();
-        String usePasswordless = formData.getFirst(USE_PASSWORDLESS_FIELD);
+        String value = formData.getFirst(USE_PASSWORDLESS_FIELD);
+        boolean usePasswordless = value.equals("on");
+        user.setSingleAttribute(USE_PASSWORDLESS_FIELD, String.valueOf(usePasswordless));
 
-        user.setSingleAttribute(USE_PASSWORDLESS_FIELD, usePasswordless);
-
-        if(Boolean.getBoolean(usePasswordless)){
+        if(usePasswordless){
             user.addRequiredAction("webauthn-register-passwordless");
         }
         user.removeRequiredAction(PROVIDER_ID);
@@ -44,6 +50,7 @@ public class OptionalPasswordlessRequiredAction implements RequiredActionProvide
         context.success();
     }
 
+    @Override
     public void close() {
 
     }
@@ -59,6 +66,6 @@ public class OptionalPasswordlessRequiredAction implements RequiredActionProvide
             formConsumer.accept(form);
         }
 
-        return form.createForm("templates/use-passwordless.ftl");
+        return form.createForm("use-passwordless.ftl");
     }
 }
