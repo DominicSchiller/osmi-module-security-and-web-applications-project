@@ -8,12 +8,18 @@ export async function findPatient(filterQuery: FilterQuery<PatientDocument>): Pr
         return Patient
             .findOne(filterQuery)
             .populate('personalDetails')
-            .populate({path: 'healthInsurance', populate: {
-                path: 'company'
-            }})
-            .populate({path: 'doctors', populate: {
-                path: 'personalDetails'
-                }})
+            .populate({
+                path: 'healthInsurance', 
+                populate: {
+                    path: 'company'
+                }
+            })
+            .populate({
+                path: 'doctors', 
+                populate: {
+                    path: 'personalDetails'
+                }
+            })
             .lean()
     } catch (error: any | unknown) {
         log.error(error)

@@ -1,3 +1,3 @@
 export enum OPAPolicyEndpoint {
-    getUser = "getuser"
+    getPatient = "patient/getpatient"
 }

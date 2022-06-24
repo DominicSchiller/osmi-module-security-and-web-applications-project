@@ -1,4 +1,4 @@
-package epapoc.getuser
+package epapoc.patient.getpatient
 
 import data.epapoc.common.jwt
 import input.attributes.request.http
