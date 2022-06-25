@@ -24,17 +24,16 @@ deny[errors.bad_access_token_username] {
 
     not payload.preferred_username == user_info.preferred_username
 }
-default token_verification := {
-    "isAllowed": false
-}
 
-token_verification = {"isAllowed": true} {
+default isAllowed := false
+default reasons := []
+
+isAllowed {
     deny == set()
 }
 
-token_verification = {"isAllowed": false, "reasons": reasons} {
-    reasons := deny
-    deny != set()
+reasons := jwtCheckErrors {
+    jwtCheckErrors := deny
 }
 
 get_token_payload(request) := result {

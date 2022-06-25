@@ -12,11 +12,6 @@ bad_access_token_signature := {
 
 bad_access_token_sub := {
     "status": 1,
-    "message": "The sub id of the access token provided is wrong"
-}
-
-bad_access_token_username := {
-    "status": 1,
     "message": "The access token provided does not belong to user"
 }
 
