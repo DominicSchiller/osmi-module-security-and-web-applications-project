@@ -4,11 +4,12 @@ import {PatientDocument} from "../db/models/patient.model";
 
 export async function findPatientHandler(req: Request, res: Response, next: NextFunction) {
     try {
+        const { patientId } = req.params;
         res.locals.fetchedData = await findPatient({
-            _id: req.body.patientId
+            _id: patientId
         }) as PatientDocument
         next()
     } catch (error: any | unknown) {
-        res.status(409).send(error.message);
+        res.status(400).send(error.message);
     }
 }

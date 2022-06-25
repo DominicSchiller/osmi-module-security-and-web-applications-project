@@ -17,15 +17,14 @@ const validateRequest = (opaEndPoint: OPAPolicyEndpoint) => async (
             OPARequestInputFactory.createInput(req, keycloakUserInfo, res.locals.fetchedData)
         )
         // (2) verify opa policies
-        if (!opaResponse.result.authorization.isAllowed) {
-            log.error(opaResponse.result.authorization.reasons)
-            return Promise.reject(new Error(JSON.stringify(opaResponse.result.authorization)))
+        if (!opaResponse.result.isAllowed) {
+            log.error(opaResponse.result.reasons)
+            return res.status(401).send(opaResponse.result.reasons)
         }
-
         res.send(JSON.stringify(res.locals.fetchedData))
     } catch (error: any | unknown) {
         log.error(error);
-        return res.status(400).send(JSON.stringify(error));
+        return res.status(401).send(error);
     }
 }
 

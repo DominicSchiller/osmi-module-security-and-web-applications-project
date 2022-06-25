@@ -40,7 +40,7 @@ export class KeycloakService {
             )
         } catch (error: any | unknown) {
             log.error(error)
-            throw error
+            return Promise.reject(error.message)
         }
     }
     //</editor-fold>

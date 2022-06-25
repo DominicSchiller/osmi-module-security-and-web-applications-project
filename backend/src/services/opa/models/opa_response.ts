@@ -1,18 +1,11 @@
-export class OPAResponse {
-
-    constructor(
-        readonly decision_id: string,
-        readonly result: OPAResponseResult
-    ) {}
+export interface OPAResponse {
+    decision_id: string,
+    result: OPAResponseResult
 }
 
 export interface OPAResponseResult {
-    authorization: OPAAuthorizationResult
-}
-
-export interface OPAAuthorizationResult {
     isAllowed: boolean
-    reasons?: []
+    reasons?: OPAAuthorizationDeniedReason[]
 }
 
 export interface OPAAuthorizationDeniedReason {

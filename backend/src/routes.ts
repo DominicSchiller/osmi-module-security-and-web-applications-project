@@ -6,6 +6,6 @@ import {OPAPolicyEndpoint} from "./services/opa/models/opa_policy_endpoint";
 export default function(app: Application) {
 
     app.get(
-        "/api/patient",
+        "/api/patient/:patientId",
         findPatientHandler, validateRequest(OPAPolicyEndpoint.getPatient))
 }
