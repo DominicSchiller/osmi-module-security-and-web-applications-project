@@ -4,3 +4,5 @@ package epapoc.utils
 contains(set, element) {
   set[_] = element
 }
+
+has_key(set, key) { _ = set[key] }

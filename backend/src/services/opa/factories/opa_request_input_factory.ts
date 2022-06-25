@@ -15,6 +15,7 @@ export class OPARequestInputFactory {
                         httpVersion: req.httpVersion,
                         originalUrl: req.originalUrl,
                         body: req.body,
+                        params: req.params,
                         headers: req.headers
                     }
                 },

@@ -20,6 +20,7 @@ export interface OPAIncomingRequestData {
     httpVersion: string,
     originalUrl: string,
     body: any,
+    params: Object,
     headers: IncomingHttpHeaders
 }
 
