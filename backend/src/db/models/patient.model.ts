@@ -16,10 +16,10 @@ export interface HealthInsuranceDetails {
 }
 
 export interface PatientDocument extends Document {
-   _id: string
+    _id: string
     personalDetails: UserDocument
-    healthInsurance: HealthInsuranceDetails
-    bodyPhysics: BodyPhysics
+    healthInsurance?: HealthInsuranceDetails
+    bodyPhysics?: BodyPhysics
     doctors: [DoctorDocument]
 }
 
