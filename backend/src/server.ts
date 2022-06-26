@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import log from "./logger/logger";
 import connect from "./db/connect";
-import routes from "./routes";
+import routes from "./routing/routes";
 
 const expressPinoLogger = require('express-pino-logger');
 
