@@ -107,7 +107,7 @@
     "createdTimestamp" : 1655899924763,
     "username" : "ffreytag",
     "enabled" : true,
-    "totp" : false,
+    "totp" : true,
     "emailVerified" : false,
     "firstName" : "Franziska",
     "lastName" : "Freytag",
@@ -118,9 +118,23 @@
       "createdDate" : 1655899935493,
       "secretData" : "{\"value\":\"rJaqfkPzsKZQhq0Do9YQ33q1+DDrHzcvQTgPk4tZ+g7UDyF8xkWex/TPXVzm6h/uZbm73i4glqwFF5JreSQdKw==\",\"salt\":\"YFAsQLvKAbD7gEo1rcLIBw==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    }, {
+      "id" : "2dad1ff6-be42-4484-a51f-4610af8572b8",
+      "type" : "otp",
+      "userLabel" : "iPhone",
+      "createdDate" : 1656259131569,
+      "secretData" : "{\"value\":\"CGQcMn1TKvo4aihI6UhD\"}",
+      "credentialData" : "{\"subType\":\"totp\",\"digits\":6,\"counter\":0,\"period\":30,\"algorithm\":\"HmacSHA1\"}"
+    }, {
+      "id" : "d3965826-d5dc-409c-b6c8-03e841bc42d8",
+      "type" : "webauthn-passwordless",
+      "userLabel" : "MacBook",
+      "createdDate" : 1656259141278,
+      "secretData" : "{}",
+      "credentialData" : "{\"aaguid\":\"00000000-0000-0000-0000-000000000000\",\"credentialId\":\"7j/UDwMXJJ6nsD3pRYzhfIuxOqw=\",\"counter\":0,\"credentialPublicKey\":\"pQECAyYgASFYICcI1eT78rdzB6GYE8LWkBYcTwsURhQ1bDtMkaNOcvkfIlgg5brYjLZfFrV3LMbI35t6Ie0ZhyvuAcE7ZscTQ1QE0mg\",\"attestationStatementFormat\":\"none\",\"transports\":[]}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
