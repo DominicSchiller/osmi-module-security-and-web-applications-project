@@ -1,4 +1,4 @@
-package epapoc.patient.getpatient
+package epapoc.patient.get_patient
 
 import data.epapoc.data.errors
 import data.epapoc.utils
@@ -8,11 +8,12 @@ import input.attributes.request.http
 
 default isAllowed := false
 
-isAllowed { # allow is true if ALL of the body statements are true
+isAllowed {
+  # is token correct
   jwt.isAllowed
-  ## &&
+  ## && has patientId
   utils.has_key(request.params, "patientId")
-  # &&
+  # && is patientId match
   payload := jwt.get_token_payload(request)
   payload.sub == request.params.patientId
 }

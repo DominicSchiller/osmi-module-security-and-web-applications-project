@@ -17,6 +17,7 @@ bad_access_token_sub := {
     "message": "The access token provided does not belong to user"
 }
 
+# Access Level related errors
 access_level_2_required := {
     "status": 2,
     "message": "A minimum access level of 2 is required"

@@ -1,7 +1,7 @@
-package epapoc.patient.getpatient.tests
+package epapoc.patient.get_patient.tests
 
-import data.epapoc.patient.getpatient.isAllowed
-import data.epapoc.patient.getpatient.reasons
+import data.epapoc.patient.get_patient.isAllowed
+import data.epapoc.patient.get_patient.reasons
 import data.epapoc.data.tests.patient.input_requests
 import data.epapoc.data.errors
 import data.epapoc.utils
