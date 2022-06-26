@@ -5,7 +5,7 @@ import { KeycloakGuard } from './guards/keycloak.guard';
 const routes: Routes = [
   {
     path: 'public',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
@@ -15,8 +15,8 @@ const routes: Routes = [
   {
     path: 'restricted-space',
     canActivate: [KeycloakGuard],
-    loadChildren: () => import('./restricted-space/restricted-space.module').then( m => m.RestrictedSpacePageModule),
-  },
+    loadChildren: () => import('./pages/restricted-space/restricted-space.module').then( m => m.RestrictedSpacePageModule),
+  }
 ];
 
 @NgModule({

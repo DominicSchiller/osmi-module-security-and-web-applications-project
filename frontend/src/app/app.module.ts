@@ -1,7 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
@@ -21,6 +21,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
         silentCheckSsoRedirectUri:
           window.location.origin + '/assets/silent-check-sso.html'
       },
+      enableBearerInterceptor: true,
+      bearerPrefix: 'Bearer',
       bearerExcludedUrls: ['/assets'],
       loadUserProfileAtStartUp: true // load user information 
     });
@@ -35,7 +37,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
-    KeycloakAngularModule],
+    KeycloakAngularModule,
+    HttpClientModule],
   providers: [
     { 
       // provide: RouteReuseStrategy, 
