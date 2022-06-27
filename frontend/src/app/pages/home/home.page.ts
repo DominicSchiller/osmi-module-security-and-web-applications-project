@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {KeycloakService} from "../../services/keycloak/keycloak.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,16 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private keycloakService: KeycloakService,
+    private router: Router
+  ) {}
 
+  ngOnInit() {
+    this.keycloakService.isLoggedIn.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/restricted-space']).then()
+      }
+    })
+  }
 }

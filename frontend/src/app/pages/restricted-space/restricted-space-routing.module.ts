@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: RestrictedSpacePage
+  },
+  {
+    path: 'patient',
+    loadChildren: () => import('./patient/patient-home/patient-home.module').then( m => m.PatientHomePageModule)
   }
 ];
 

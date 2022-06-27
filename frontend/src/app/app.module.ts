@@ -1,14 +1,14 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import {KeycloakService as EpaKeycloakService} from "./services/keycloak/keycloak.service";
 
-function initializeKeycloak(keycloak: KeycloakService) {
+function initializeKeycloak(keycloak: KeycloakService, _: EpaKeycloakService) {
   return () =>
     keycloak.init({
       config: {
@@ -24,7 +24,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
       enableBearerInterceptor: true,
       bearerPrefix: 'Bearer',
       bearerExcludedUrls: ['/assets'],
-      loadUserProfileAtStartUp: true // load user information 
+      loadUserProfileAtStartUp: true // load user information
     });
 }
 
@@ -34,19 +34,17 @@ function initializeKeycloak(keycloak: KeycloakService) {
   ],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
-    AppRoutingModule, 
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
     KeycloakAngularModule,
     HttpClientModule],
   providers: [
-    { 
-      // provide: RouteReuseStrategy, 
-      // useClass: IonicRouteStrategy 
+    {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService]
+      deps: [KeycloakService, EpaKeycloakService]
     }
   ],
   bootstrap: [AppComponent],

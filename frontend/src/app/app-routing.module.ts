@@ -4,14 +4,14 @@ import { KeycloakGuard } from './guards/keycloak.guard';
 
 const routes: Routes = [
   {
-    path: 'public',
+    path: '',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
-  {
-    path: '',
-    redirectTo: 'public',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'public',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'restricted-space',
     canActivate: [KeycloakGuard],
