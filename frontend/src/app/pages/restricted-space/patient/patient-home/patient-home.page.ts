@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PatientAPIService} from "../../../../services/backend/patient_api_service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Patient} from "../../../../models/patient";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {EpaKeycloakAccessLevel} from "../../../../services/keycloak/epa-keycloak-access-level";
 import {KeycloakService} from "../../../../services/keycloak/keycloak.service";
 // import 'rxjs/add/operator/filter';
@@ -20,6 +20,7 @@ export class PatientHomePage implements OnInit {
   userProfile: Observable<Patient> = this.userProfileSubject.asObservable()
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private patientApiService: PatientAPIService,
     private keycloakService: KeycloakService
@@ -34,8 +35,7 @@ export class PatientHomePage implements OnInit {
             this.patientId = params.id
             this.loadPatient()
           }
-        }
-      );
+      });
   }
 
   private loadPatient() {
@@ -46,21 +46,15 @@ export class PatientHomePage implements OnInit {
   }
 
 
-  public async stepUp(acr: string) {
-    await this.keycloakService.stepUp(EpaKeycloakAccessLevel.aal2)
+  public showInsuranceDetails() {
+    this.router.navigate(['/restricted-space/patient/insurance-details'], {
+      queryParams: {patientId: this.patientId}
+    })
   }
 
   public async logout() {
     await this.keycloakService.logout()
   }
-
-  public loadInsuranceDetails() {
-    this.patientApiService.getInsuranceDetails(this.patientId)
-      .subscribe(insuranceDetails => {
-        console.warn("Insufrance Dwetails:", insuranceDetails)
-      })
-  }
-
 
   public get username() {
     let person = this.userProfileSubject.value.personalDetails

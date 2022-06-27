@@ -35,7 +35,7 @@ export class KeycloakService {
 
   public async stepUp(accessLevel: EpaKeycloakAccessLevel) {
     await this.keycloakService.login({
-      redirectUri: window.location.origin + "/restricted-space",
+      redirectUri: window.location.href,
       acr: { values: [accessLevel], essential: false }
     })
   }
