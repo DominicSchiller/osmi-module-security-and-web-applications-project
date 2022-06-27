@@ -2,6 +2,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable, of} from "rxjs";
 import {catchError, tap} from 'rxjs/operators';
+import { HealthInsurance, HealthInsuranceDetails } from "src/app/models/health_insurance";
 import {Patient} from "src/app/models/patient";
 import {PatientAPIEndpoint} from "./patent_api_endpoint";
 
@@ -24,8 +25,14 @@ export class PatientAPIService {
   getPatient(id): Observable<Patient> {
     return this.httpClient.get<Patient>(`${this.getUrl(PatientAPIEndpoint.getPatient)}/${id}`)
       .pipe(
-        tap(_ => console.log(`Patient fetched: ${id}`)),
         catchError(this.handleError<Patient>(`Get patient id=${id}`))
+      );
+  }
+
+  getInsuranceDetails(id): Observable<HealthInsuranceDetails> {
+    return this.httpClient.get<HealthInsuranceDetails>(`${this.getUrl(PatientAPIEndpoint.getPatient)}/${id}/${PatientAPIEndpoint.getInsurance}`)
+      .pipe(
+        catchError(this.handleError<HealthInsuranceDetails>(`Get patient id=${id}`))
       );
   }
 
@@ -40,5 +47,4 @@ export class PatientAPIService {
       return of(result as T);
     };
   }
-
 }

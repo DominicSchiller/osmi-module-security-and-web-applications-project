@@ -11,12 +11,12 @@
 
 <ion-content class="ion-padding" *ngIf="userProfile | async as user">
   <h2>
-    Willkommen<br />{{ username() }}
+    Willkommen<br />{{ username }}
   </h2>
   <ion-grid>
     <ion-row>
       <ion-col size="4">
-        <ion-card button="true" mode="ios" color="secondary" class="menu-card" (click)="stepUp('epa-poc-aal2')">
+        <ion-card button="true" mode="ios" color="secondary" class="menu-card" (click)="loadInsuranceDetails()">
           <ion-card-header>
             <ion-card-subtitle>
               <ion-icon name="card"></ion-icon>

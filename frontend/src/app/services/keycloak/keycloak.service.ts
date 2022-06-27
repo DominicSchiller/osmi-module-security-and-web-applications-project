@@ -23,7 +23,6 @@ export class KeycloakService {
 
   //<editor-fold desc="Init">
   constructor(public keycloakService: KeycloakAngular.KeycloakService) {
-    console.info("Init ePa Keycloak service ...")
     this.initKeycloakEventHandler()
   }
   //</editor-fold>
@@ -94,7 +93,6 @@ export class KeycloakService {
   }
 
   private handleKeycloakOnReady(isLoggedIn: boolean) {
-    console.info("isLogginIn:", isLoggedIn)
     this.isLoggedInSubject.next(isLoggedIn)
 
     if (!isLoggedIn) {

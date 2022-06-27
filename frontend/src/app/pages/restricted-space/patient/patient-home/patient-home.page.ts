@@ -14,6 +14,8 @@ import {KeycloakService} from "../../../../services/keycloak/keycloak.service";
 })
 export class PatientHomePage implements OnInit {
 
+  private patientId: string
+
   private userProfileSubject: BehaviorSubject<Patient> = new BehaviorSubject<Patient>(null)
   userProfile: Observable<Patient> = this.userProfileSubject.asObservable()
 
@@ -29,14 +31,15 @@ export class PatientHomePage implements OnInit {
       // .filter(params => params.order)
       .subscribe(params => {
           if (params.id) {
-            this.loadPatient(params.id)
+            this.patientId = params.id
+            this.loadPatient()
           }
         }
       );
   }
 
-  private loadPatient(patientId: string) {
-    this.patientApiService.getPatient(patientId)
+  private loadPatient() {
+    this.patientApiService.getPatient(this.patientId)
       .subscribe(patient => {
         this.userProfileSubject.next(patient)
       })
@@ -51,7 +54,15 @@ export class PatientHomePage implements OnInit {
     await this.keycloakService.logout()
   }
 
-  public username() {
+  public loadInsuranceDetails() {
+    this.patientApiService.getInsuranceDetails(this.patientId)
+      .subscribe(insuranceDetails => {
+        console.warn("Insufrance Dwetails:", insuranceDetails)
+      })
+  }
+
+
+  public get username() {
     let person = this.userProfileSubject.value.personalDetails
     return `${person.firstName} ${person.lastName}`
   }
