@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HealthInsuranceDetails } from 'src/app/models/health_insurance';
 import { PatientAPIService } from 'src/app/services/backend/patient_api_service';
 
 @Component({
@@ -10,6 +12,8 @@ import { PatientAPIService } from 'src/app/services/backend/patient_api_service'
 export class InsuranceDetailsPage implements OnInit {
 
   private patientId: string
+  private insuranceDetailsSubject: BehaviorSubject<HealthInsuranceDetails> = new BehaviorSubject<HealthInsuranceDetails>(null)
+  public insuranceDetails: Observable<HealthInsuranceDetails> = this.insuranceDetailsSubject.asObservable()
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +35,8 @@ export class InsuranceDetailsPage implements OnInit {
   private loadInsuranceDetails() {
     this.patientApiService.getInsuranceDetails(this.patientId)
       .subscribe(insuranceDetails => {
-        console.warn("Insufrance Dwetails:", insuranceDetails)
+        console.warn(insuranceDetails)
+        this.insuranceDetailsSubject.next(insuranceDetails)
       })
   }
 

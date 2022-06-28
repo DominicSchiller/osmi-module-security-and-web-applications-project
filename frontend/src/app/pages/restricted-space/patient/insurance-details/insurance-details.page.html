@@ -1,9 +1,73 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>insurance-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meine Krankenversicherung</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="insuranceDetails | async as insurance">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <ion-card mode="ios">
+          <ion-card-header>
+            <ion-card-subtitle>Krankenkasse</ion-card-subtitle>
+            <ion-card-title>{{insurance.company.name}}</ion-card-title>
+            <ion-chip color="primary" class="insurance-group-badge">
+              <ion-label>{{insurance.company.group}}</ion-label>
+            </ion-chip>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col class="grid-row-title">Anschrift</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="3">Straße</ion-col>
+                <ion-col>{{insurance.company.address.street}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="3">PLZ / Ort</ion-col>
+                <ion-col>{{insurance.company.address.zipCode}} {{insurance.company.address.city}}</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="3">
+        <ion-card mode="ios">
+          <ion-card-header>
+            <ion-card-subtitle>Krankenversicherungskarte</ion-card-subtitle>
+            <ion-card-title>Ihre Gesundheitskarte</ion-card-title>
+            <ion-chip color="primary" class="insurance-info-badge insurance-number-badge">
+              <ion-label>{{insurance.insuranceNumber}}</ion-label>
+            </ion-chip>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col class="grid-row-title">Kartendaten</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">Persönliche Kennummer</ion-col>
+                <ion-col>{{insurance.insuranceNumber}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">Kennummer des Trägers</ion-col>
+                <ion-col>78483920</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">Ablaufdatum</ion-col>
+                <ion-col>31.12.2023</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
