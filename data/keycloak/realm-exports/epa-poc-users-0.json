@@ -1,6 +1,28 @@
 {
   "realm" : "epa-poc",
   "users" : [ {
+    "id" : "52bf3fb2-e3a6-4585-8c14-793b73d92307",
+    "createdTimestamp" : 1656491014675,
+    "username" : "ckruse",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Christian",
+    "lastName" : "Kruse",
+    "email" : "christian.kruse@epa-poc.de",
+    "credentials" : [ {
+      "id" : "3a4fa089-491a-4004-b7ab-a9cd0e7e264c",
+      "type" : "password",
+      "createdDate" : 1656491031621,
+      "secretData" : "{\"value\":\"Og9r5dB2wRAE8r5bWznCZ/+ay2E/GQTcX2fCr9Zhe9TS+tzQlh9rlbNPsGGKM2MNtmy2MnDGeHt3vUwI98m4EA==\",\"salt\":\"P/igNdhPNwIu1SXmH7Vp4A==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "realmRoles" : [ "default-roles-epa-poc" ],
+    "notBefore" : 0,
+    "groups" : [ "/representative" ]
+  }, {
     "id" : "145a1e9b-64c5-4831-b3ac-ef12a73eb90e",
     "createdTimestamp" : 1655900203336,
     "username" : "damberg",
@@ -32,7 +54,7 @@
       "credentialData" : "{\"aaguid\":\"00000000-0000-0000-0000-000000000000\",\"credentialId\":\"jZsJFsmIYotRd9N0UqZ9v/JGN0o=\",\"counter\":0,\"credentialPublicKey\":\"pQECAyYgASFYIMvC9wH2PSSkfyWtz0ZtZ3T6w0H3q7iPGxKasWED4nvZIlggUt10avJC3k-bPa10OvWEUFOhGLX3JZi-AzhY-en0Wdk\",\"attestationStatementFormat\":\"none\",\"transports\":[]}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -102,6 +124,28 @@
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
+  }, {
+    "id" : "45bf36f8-21d2-4c48-81c2-00ea462d30d5",
+    "createdTimestamp" : 1656490952620,
+    "username" : "ehaag",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Emine",
+    "lastName" : "Haag",
+    "email" : "emine.haag@epa-poc.de",
+    "credentials" : [ {
+      "id" : "9dad5c5e-9993-436d-ae69-765ca87217ba",
+      "type" : "password",
+      "createdDate" : 1656490973008,
+      "secretData" : "{\"value\":\"5b1hKZKBsCL0vUgaf4K3w9mzcLBGZia6OmBj6kYkmNRlB2d5khv2fZPTSOfR1feCc+7JwZf5t/av0HxK/86y9A==\",\"salt\":\"qYt7SDqrFeQgYafJkb103g==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "realmRoles" : [ "default-roles-epa-poc" ],
+    "notBefore" : 0,
+    "groups" : [ "/representative" ]
   }, {
     "id" : "3326d733-31fb-4313-8070-68c705accbd5",
     "createdTimestamp" : 1655899924763,
@@ -248,6 +292,28 @@
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
+  }, {
+    "id" : "24464036-38bc-48ec-bce0-b4aa6e43a5de",
+    "createdTimestamp" : 1656491151503,
+    "username" : "jschütte",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Joseph",
+    "lastName" : "Schütte",
+    "email" : "joseph.schuette@epa-poc.de",
+    "credentials" : [ {
+      "id" : "8f390f9d-c3fa-4433-9298-d13b38652afc",
+      "type" : "password",
+      "createdDate" : 1656491165917,
+      "secretData" : "{\"value\":\"PoH/7ZtYERIxXmRSMdPyNjcDQNfYCvwcGl2aLr/KUlkMoPhRPsIUZmc9BmGzcyxQ8q/d/9HPklOz0d5WRAamxQ==\",\"salt\":\"cuzS2U37Q1qJxRBYAZbOYw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "realmRoles" : [ "default-roles-epa-poc" ],
+    "notBefore" : 0,
+    "groups" : [ "/representative" ]
   }, {
     "id" : "2078949c-dcb8-41cd-a26e-fe0925c33f5c",
     "createdTimestamp" : 1655900662368,
@@ -402,6 +468,28 @@
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
+  }, {
+    "id" : "7c804ed3-25f3-45d4-96eb-4ec924f85e7c",
+    "createdTimestamp" : 1656490898806,
+    "username" : "nschütze",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "Natalja",
+    "lastName" : "Schütze",
+    "email" : "natalja.schuetze@epa-poc.de",
+    "credentials" : [ {
+      "id" : "db820f62-128f-4150-92b3-af217197a682",
+      "type" : "password",
+      "createdDate" : 1656490911571,
+      "secretData" : "{\"value\":\"iDjGlF/UxWZ5f8wK5qogbyobrFtVSj/ujhF/bHFq4WQFJvptXBbgYK74iFmEB+4ZRKjDdYHGVSmC0Ft7jdh8WA==\",\"salt\":\"2L4MsQkLXyDm3QVVUFpAWQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "realmRoles" : [ "default-roles-epa-poc" ],
+    "notBefore" : 0,
+    "groups" : [ "/representative" ]
   }, {
     "id" : "c3540aaa-728d-441e-8898-f5c157d7f941",
     "createdTimestamp" : 1655899632884,

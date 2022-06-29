@@ -41,7 +41,7 @@ services:
 
   opa:
     # image: openpolicyagent/opa:0.40.0-rootless
-    image: openpolicyagent/opa:0.41.0-rootless
+    image: openpolicyagent/opa:edge-static
     container_name: opa
     restart: on-failure:3
     ports:

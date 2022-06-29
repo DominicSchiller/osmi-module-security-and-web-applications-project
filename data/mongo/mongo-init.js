@@ -165,9 +165,31 @@ function createDoctor(
     });
 }
 
+function createRepresentative(
+    keycloakId,
+    title,
+    firstName,
+    lastName,
+    gender,
+    birthday,
+    age,
+    street,
+    city,
+    zipCode,
+    phone,
+) {
+    let userRecord = createUser(title, firstName, age, lastName, gender, street, city, zipCode, phone, birthday)
+    db.representatives.insertOne({
+        _id: keycloakId,
+        personalDetails: userRecord.insertedId,
+        representedPatients: []
+    });
+}
+
 function assignDoctorToPatient(
     doctorKeycloakId,
-    patientKeycloakId) {
+    patientKeycloakId
+) {
         db.patients.update(
             { "_id": patientKeycloakId },
             {
@@ -181,6 +203,28 @@ function assignDoctorToPatient(
             {
                 $push: {
                     patients: patientKeycloakId
+                }
+            }
+        )
+}
+
+function assignRepresentativeToPatient(
+    representativeKeycloakId,
+    patientKeycloakId
+) {
+        db.representatives.update(
+            { "_id": representativeKeycloakId },
+            {
+                $push: {
+                    representedPatients: patientKeycloakId
+                }
+            }
+        );
+        db.patients.update(
+            { "_id": patientKeycloakId },
+            {
+                $push: {
+                    representatives: representativeKeycloakId
                 }
             }
         )
@@ -245,6 +289,18 @@ createDoctor('abb1f05f-0c08-49b5-aeab-2c887fc22c6e', 'Dr. med. dent.', 'Christin
 createDoctor('99e21648-ece5-4ff6-be65-865614c7cba9', 'Dr. med.', 'Gunnar', 'Broß', 45, 'male', '040 5522781', '6/1/1977', 'Facharzt für Othopädie und Unfallchirurgie', 'Facharztklinik Hamburg');
 createDoctor('f232afc4-746e-4640-b455-e7af1972bff2', 'Dr. med.', 'Magdalena', 'Meffert', 42, 'female', '040 68913018', '11/11/1981', 'Fachärztin für Gynäkologie und Geburtshilfe', 'Facharztklinik Hamburg');
 
+
+/*
+#########################
+Create Representatives
+#########################
+*/
+createRepresentative('24464036-38bc-48ec-bce0-b4aa6e43a5de', '', 'Joseph', 'Schütte', 'male', '11/26/1973', 49, 'Gorch-Fock-Wall 4', 'Hamburg', '20354', '040 340113');
+createRepresentative('7c804ed3-25f3-45d4-96eb-4ec924f85e7c', '', 'Natalja', 'Schütze', 'female', '03/16/1985', 37, 'Billstrasse 208', 'Hamburg', '20354', '040 7807690');
+createRepresentative('45bf36f8-21d2-4c48-81c2-00ea462d30d5', 'Dr. phil.', 'Emine', 'Haag', 'female', '03/19/1971', 51, 'Ditmar-Koel-Strasse 22', 'Hamburg', '20354', '040 31792158');
+createRepresentative('52bf3fb2-e3a6-4585-8c14-793b73d92307', '', 'Christian', 'Kruse', 'male', '04/19/1991', 31, 'Lange Reihe 14', 'Hamburg', '20099', '040 35796922');
+
+
 /*
 #########################################
 Assign Doctor <--> Patient Relationships
@@ -294,3 +350,15 @@ assignDoctorToPatient('f232afc4-746e-4640-b455-e7af1972bff2', '3326d733-31fb-431
 assignDoctorToPatient('46a64ab9-253e-4d94-a26a-ddd4fed31b2f', '03419e71-b4b3-43bc-ad9c-166b7912bd6e')
 assignDoctorToPatient('58852ee4-2a60-4101-80dc-61e9497aaded', '03419e71-b4b3-43bc-ad9c-166b7912bd6e')
 assignDoctorToPatient('16803954-bd42-40e1-8fba-a847f9ba8f78', '03419e71-b4b3-43bc-ad9c-166b7912bd6e')
+
+/*
+#################################################
+Assign Representative <--> Patient Relationships
+#################################################
+*/
+
+assignRepresentativeToPatient('45bf36f8-21d2-4c48-81c2-00ea462d30d5', 'ed129ff3-5732-4d11-9ba6-39a53efd7386')
+assignRepresentativeToPatient('52bf3fb2-e3a6-4585-8c14-793b73d92307', 'ed129ff3-5732-4d11-9ba6-39a53efd7386')
+assignRepresentativeToPatient('7c804ed3-25f3-45d4-96eb-4ec924f85e7c', '689569fd-2283-4e32-8898-b94e77d8a817')
+assignRepresentativeToPatient('24464036-38bc-48ec-bce0-b4aa6e43a5de', 'c3540aaa-728d-441e-8898-f5c157d7f941')
+assignRepresentativeToPatient('45bf36f8-21d2-4c48-81c2-00ea462d30d5', '3326d733-31fb-4313-8070-68c705accbd5')

@@ -91,3 +91,14 @@ http://localhost:8081
 
 
 
+### Representatives
+
+| Username | Password | ID                                   | Represents         |
+| -------- | -------- | ------------------------------------ | ------------------ |
+| ckruse   | test1234 | 52bf3fb2-e3a6-4585-8c14-793b73d92307 | kfischer           |
+| ehaag    | test1234 | 45bf36f8-21d2-4c48-81c2-00ea462d30d5 | kfischer, ffreytag |
+| jschütte | test1234 | 24464036-38bc-48ec-bce0-b4aa6e43a5de | pbürger            |
+| nschütze | test1234 | 7c804ed3-25f3-45d4-96eb-4ec924f85e7c | mkönig             |
+
+
+
