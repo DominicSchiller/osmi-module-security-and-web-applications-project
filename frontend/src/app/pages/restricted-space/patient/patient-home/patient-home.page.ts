@@ -52,12 +52,14 @@ export class PatientHomePage implements OnInit {
     })
   }
 
-  public async logout() {
-    await this.keycloakService.logout()
+  public showRepresentativesOverview() {
+    this.router.navigate(['/restricted-space/patient/representatives-overview'], {
+      queryParams: {patientId: this.patientId}
+    })
   }
 
-  public async stepDown() {
-    await this.keycloakService.stepUp(EpaKeycloakAccessLevel.aal1)
+  public async logout() {
+    await this.keycloakService.logout()
   }
 
   public get username() {

@@ -1,4 +1,5 @@
 export enum PatientRoutes {
     getPatient = "/api/patient/:patientId",
-    getInsurance = "/api/patient/:patientId/insurance-details"
+    getInsurance = "/api/patient/:patientId/insurance-details",
+    getRepresentatives = "/api/patient/:patientId/representatives"
 }

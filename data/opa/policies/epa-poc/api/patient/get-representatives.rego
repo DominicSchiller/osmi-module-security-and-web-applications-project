@@ -1,4 +1,4 @@
-package epapoc.patient.get_insurance_details
+package epapoc.patient.get_representatives
 
 import data.epapoc.patient.get_patient
 import data.epapoc.common.aal.aal2

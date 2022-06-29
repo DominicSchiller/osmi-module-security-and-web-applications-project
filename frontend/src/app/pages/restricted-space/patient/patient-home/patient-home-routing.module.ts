@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'insurance-details',
     loadChildren: () => import('./../insurance-details/insurance-details.module').then( m => m.InsuranceDetailsPageModule)
+  },
+  {
+    path: 'representatives-overview',
+    loadChildren: () => import('./../representatives-overview/representatives-overview.module').then( m => m.RepresentativesOverviewPageModule)
   }
 ];
 

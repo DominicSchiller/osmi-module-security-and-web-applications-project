@@ -4,6 +4,7 @@ import {Observable, of} from "rxjs";
 import {catchError, tap} from 'rxjs/operators';
 import { HealthInsurance, HealthInsuranceDetails } from "src/app/models/health_insurance";
 import {Patient} from "src/app/models/patient";
+import { Representative } from "src/app/models/representative";
 import {PatientAPIEndpoint} from "./patent_api_endpoint";
 
 
@@ -32,7 +33,14 @@ export class PatientAPIService {
   getInsuranceDetails(id): Observable<HealthInsuranceDetails> {
     return this.httpClient.get<HealthInsuranceDetails>(`${this.getUrl(PatientAPIEndpoint.getPatient)}/${id}/${PatientAPIEndpoint.getInsurance}`)
       .pipe(
-        catchError(this.handleError<HealthInsuranceDetails>(`Get patient id=${id}`))
+        catchError(this.handleError<HealthInsuranceDetails>(`Get health insurance details for patient with id=${id}`))
+      );
+  }
+
+  getRepresentatives(id): Observable<Representative[]> {
+    return this.httpClient.get<Representative[]>(`${this.getUrl(PatientAPIEndpoint.getPatient)}/${id}/${PatientAPIEndpoint.getRepresentatives}`)
+      .pipe(
+        catchError(this.handleError<Representative[]>(`Get representatives for patient with id=${id}`))
       );
   }
 

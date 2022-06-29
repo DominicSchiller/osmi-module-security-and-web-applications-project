@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HealthInsuranceDetails } from 'src/app/models/health_insurance';
+import { Representative } from 'src/app/models/representative';
 import { PatientAPIService } from 'src/app/services/backend/patient_api_service';
 
 @Component({

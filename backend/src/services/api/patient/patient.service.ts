@@ -2,6 +2,7 @@ import {FilterQuery} from "mongoose";
 import log from "../../../logger/logger";
 import Patient, {HealthInsuranceDetails, PatientDocument} from "../../../db/models/patient.model";
 import { omit } from "lodash";
+import Representative, { RepresentativeDocument } from "../../../db/models/representative.model";
 
 require('../../../db/models/health_insurance.model')
 require('../../../db/models/address.model')
@@ -32,7 +33,7 @@ export async function findPatient(filterQuery: FilterQuery<PatientDocument>): Pr
     }
 }
 
-export async function findInsurance(filterQuery: FilterQuery<HealthInsuranceDetails>): Promise<HealthInsuranceDetails> {
+export async function findInsurance(filterQuery: FilterQuery<PatientDocument>): Promise<HealthInsuranceDetails> {
     try {
         // (3) fetch database data
         let patient: PatientDocument = await Patient
@@ -52,6 +53,32 @@ export async function findInsurance(filterQuery: FilterQuery<HealthInsuranceDeta
             return patient.healthInsurance as HealthInsuranceDetails
         }
         return {} as HealthInsuranceDetails
+    } catch (error: any | unknown) {
+        log.error(error)
+        throw error
+    }
+}
+
+export async function findAllRepresentatives(filterQuery: FilterQuery<PatientDocument>): Promise<RepresentativeDocument[]> {
+    try {
+        // (3) fetch database data
+        let patient: PatientDocument = await Patient
+            .findOne(filterQuery)
+            .select('representatives')
+            .populate({
+                path: 'representatives',
+                populate: {
+                    path: 'personalDetails',
+                    populate: {
+                        path: 'address'
+                    }
+                }
+            })
+            .lean()
+        if (patient.representatives) {
+            return patient.representatives as RepresentativeDocument[]
+        }
+        return [] as RepresentativeDocument[]
     } catch (error: any | unknown) {
         log.error(error)
         throw error

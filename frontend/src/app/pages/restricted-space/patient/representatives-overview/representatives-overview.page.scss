@@ -1,0 +1,29 @@
+.content-container {
+    padding: 24px 25vw !important;
+    width: 100%;
+    height: 100%;
+
+    .representatives-list {
+        margin-bottom: 24px;
+        ion-list-header {
+            margin-bottom: 16px;
+        }
+    
+        ion-icon {
+            font-size: 2.4rem;
+        }
+    
+        .list-item-action-button {
+            ion-icon {
+                font-size: 1.4rem;
+                margin-right: 8px;
+            }
+        }
+    }
+    
+    .large-action-button {
+        ion-icon {
+            margin-right: 16px;
+        }
+    }
+}

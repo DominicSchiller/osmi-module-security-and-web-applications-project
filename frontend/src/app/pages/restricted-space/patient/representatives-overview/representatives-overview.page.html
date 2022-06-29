@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meine Vertretungen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+ <div class="content-container">
+  <ion-list mode="ios" class="representatives-list">
+    <ion-list-header>Aktive Vertretungen</ion-list-header>
+
+    <ion-item *ngFor="let representative of representatives | async">
+      <ion-avatar slot="start">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{getFullName(representative)}}</h2>
+        <p>{{getAddress(representative)}}</p>
+      </ion-label>
+      <ion-button slot="end" size="default" mode="ios" color="danger" class="list-item-action-button">
+        <ion-icon name="close-circle"></ion-icon>
+        Vertretung beenden
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-button size="large" mode="ios" color="primary" class="large-action-button">
+    <ion-icon name="person-add"></ion-icon>
+    Neue Vertretung hinzufügen
+  </ion-button>
+ </div>
+</ion-content>
