@@ -35,7 +35,6 @@ export class InsuranceDetailsPage implements OnInit {
   private loadInsuranceDetails() {
     this.patientApiService.getInsuranceDetails(this.patientId)
       .subscribe(insuranceDetails => {
-        console.warn(insuranceDetails)
         this.insuranceDetailsSubject.next(insuranceDetails)
       })
   }

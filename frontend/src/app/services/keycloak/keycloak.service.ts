@@ -30,7 +30,7 @@ export class KeycloakService {
   //<editor-fold desc="Public API">
 
   public async logout() {
-    return await this.keycloakService.logout("http://localhost:8787/public");
+    return await this.keycloakService.logout("http://localhost:8787");
   }
 
   public async stepUp(accessLevel: EpaKeycloakAccessLevel) {
@@ -78,9 +78,6 @@ export class KeycloakService {
     this.keycloakService.keycloakEvents$.subscribe({
       next: async (event) => {
         this.handleKeycloakEvent(event)
-        if (event.type == KeycloakEventType.OnAuthSuccess) {
-          await this.keycloakService.updateToken(5);
-        }
       }
     });
   }
@@ -89,6 +86,14 @@ export class KeycloakService {
     switch (event.type) {
       case KeycloakEventType.OnReady:
         this.handleKeycloakOnReady(event.args as boolean ?? false)
+        break
+      case KeycloakEventType.OnAuthSuccess:
+        this.getToken()
+        console.info("Successfully authenticated!", Date(), )
+        break
+      case KeycloakEventType.OnTokenExpired:
+        console.warn("Token expired", Date())
+        this.keycloakService.updateToken()
     }
   }
 

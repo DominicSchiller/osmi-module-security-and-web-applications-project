@@ -18,6 +18,7 @@ function initializeKeycloak(keycloak: KeycloakService, _: EpaKeycloakService) {
         clientId: 'epa-poc-frontend'
       },
       initOptions: {
+        enableLogging: true,
         onLoad: 'check-sso',
         silentCheckSsoRedirectUri:
           window.location.origin + '/assets/silent-check-sso.html'

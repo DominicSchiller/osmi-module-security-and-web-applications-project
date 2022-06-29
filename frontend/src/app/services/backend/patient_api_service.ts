@@ -30,7 +30,6 @@ export class PatientAPIService {
   }
 
   getInsuranceDetails(id): Observable<HealthInsuranceDetails> {
-    console.info(`${this.getUrl(PatientAPIEndpoint.getPatient)}/${id}/${PatientAPIEndpoint.getInsurance}`)
     return this.httpClient.get<HealthInsuranceDetails>(`${this.getUrl(PatientAPIEndpoint.getPatient)}/${id}/${PatientAPIEndpoint.getInsurance}`)
       .pipe(
         catchError(this.handleError<HealthInsuranceDetails>(`Get patient id=${id}`))

@@ -56,6 +56,10 @@ export class PatientHomePage implements OnInit {
     await this.keycloakService.logout()
   }
 
+  public async stepDown() {
+    await this.keycloakService.stepUp(EpaKeycloakAccessLevel.aal1)
+  }
+
   public get username() {
     let person = this.userProfileSubject.value.personalDetails
     return `${person.firstName} ${person.lastName}`
