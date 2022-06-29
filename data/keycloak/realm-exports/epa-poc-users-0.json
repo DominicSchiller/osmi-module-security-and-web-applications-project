@@ -103,28 +103,6 @@
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
   }, {
-    "id" : "5d1f52fc-097b-4659-83bf-b284cda6f30a",
-    "createdTimestamp" : 1656500152099,
-    "username" : "domme-test",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : false,
-    "firstName" : "Ich",
-    "lastName" : "Du",
-    "email" : "some-email@epa-poc.de",
-    "credentials" : [ {
-      "id" : "297c8902-f638-4c3f-843c-462a502e4352",
-      "type" : "password",
-      "createdDate" : 1656500152149,
-      "secretData" : "{\"value\":\"uGpfgH/JTpNRgtiewjnDwJroyaCxL9Gfz1com69VH6WMGrlbbbxRcudkaNFNsW+YAhpyVTYMSsMg7mxeR04Vhg==\",\"salt\":\"8F3PSRW8K+3e+WS/D0khqQ==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
-    "realmRoles" : [ "default-roles-epa-poc" ],
-    "notBefore" : 0,
-    "groups" : [ "/representative" ]
-  }, {
     "id" : "16803954-bd42-40e1-8fba-a847f9ba8f78",
     "createdTimestamp" : 1655900463279,
     "username" : "eguhlmann",
@@ -173,7 +151,7 @@
     "createdTimestamp" : 1655899924763,
     "username" : "ffreytag",
     "enabled" : true,
-    "totp" : true,
+    "totp" : false,
     "emailVerified" : false,
     "firstName" : "Franziska",
     "lastName" : "Freytag",
@@ -184,23 +162,9 @@
       "createdDate" : 1655899935493,
       "secretData" : "{\"value\":\"rJaqfkPzsKZQhq0Do9YQ33q1+DDrHzcvQTgPk4tZ+g7UDyF8xkWex/TPXVzm6h/uZbm73i4glqwFF5JreSQdKw==\",\"salt\":\"YFAsQLvKAbD7gEo1rcLIBw==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    }, {
-      "id" : "2dad1ff6-be42-4484-a51f-4610af8572b8",
-      "type" : "otp",
-      "userLabel" : "iPhone",
-      "createdDate" : 1656259131569,
-      "secretData" : "{\"value\":\"CGQcMn1TKvo4aihI6UhD\"}",
-      "credentialData" : "{\"subType\":\"totp\",\"digits\":6,\"counter\":0,\"period\":30,\"algorithm\":\"HmacSHA1\"}"
-    }, {
-      "id" : "d3965826-d5dc-409c-b6c8-03e841bc42d8",
-      "type" : "webauthn-passwordless",
-      "userLabel" : "MacBook",
-      "createdDate" : 1656259141278,
-      "secretData" : "{}",
-      "credentialData" : "{\"aaguid\":\"00000000-0000-0000-0000-000000000000\",\"credentialId\":\"7j/UDwMXJJ6nsD3pRYzhfIuxOqw=\",\"counter\":0,\"credentialPublicKey\":\"pQECAyYgASFYICcI1eT78rdzB6GYE8LWkBYcTwsURhQ1bDtMkaNOcvkfIlgg5brYjLZfFrV3LMbI35t6Ie0ZhyvuAcE7ZscTQ1QE0mg\",\"attestationStatementFormat\":\"none\",\"transports\":[]}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -600,7 +564,7 @@
     "createdTimestamp" : 1653684469400,
     "username" : "test-patient",
     "enabled" : true,
-    "totp" : true,
+    "totp" : false,
     "emailVerified" : true,
     "firstName" : "Test",
     "lastName" : "Patient",
@@ -611,23 +575,9 @@
       "createdDate" : 1654172032462,
       "secretData" : "{\"value\":\"vbsLyLJXokA+8tE14IvsjqKEmSNxy4ZZfK1OZAvRujJcjBStyTdE+zdW6A93Wn6ArM9OxHuLWph/Gu+EWQWSYw==\",\"salt\":\"Cy4GE/RkQ9JKtt5YQhbKbg==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    }, {
-      "id" : "4e4c352a-c499-4042-bdfd-23bb138d2bda",
-      "type" : "otp",
-      "userLabel" : "iPhone",
-      "createdDate" : 1655795141744,
-      "secretData" : "{\"value\":\"xJNSefyJcQR4LV0tJp3d\"}",
-      "credentialData" : "{\"subType\":\"totp\",\"digits\":6,\"counter\":0,\"period\":30,\"algorithm\":\"HmacSHA1\"}"
-    }, {
-      "id" : "62847f93-98a0-4518-8ed5-1710fc0e2fd2",
-      "type" : "webauthn-passwordless",
-      "userLabel" : "MacBook Pro 14\"",
-      "createdDate" : 1655795198871,
-      "secretData" : "{}",
-      "credentialData" : "{\"aaguid\":\"00000000-0000-0000-0000-000000000000\",\"credentialId\":\"SGYMDlnJ/awZ32aNKe8o5NApGuE=\",\"counter\":0,\"credentialPublicKey\":\"pQECAyYgASFYIB88XSEHXGQVJHaHDvIxVSRtuMTqXgd7TB2KOQBrBASdIlggPmQCXRwyPe-g6UFBVnQfdDTqDFIv9dGam2IUHKSBLpE\",\"attestationStatementFormat\":\"none\",\"transports\":[]}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
