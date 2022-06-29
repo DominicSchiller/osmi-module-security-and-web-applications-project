@@ -1214,7 +1214,7 @@
       }
     } ]
   } ],
-  "defaultDefaultClientScopes" : [ "role_list", "web-origins", "profile", "roles", "email", "acr" ],
+  "defaultDefaultClientScopes" : [ "role_list", "profile", "email", "roles", "web-origins", "acr" ],
   "defaultOptionalClientScopes" : [ "offline_access", "address", "phone", "microprofile-jwt" ],
   "browserSecurityHeaders" : {
     "contentSecurityPolicyReportOnly" : "",

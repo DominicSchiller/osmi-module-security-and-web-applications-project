@@ -283,6 +283,7 @@
         "containerId" : "667701e8-7fe9-4c82-9b2a-9e771bac0a04",
         "attributes" : { }
       } ],
+      "epa-poc-backend" : [ ],
       "account" : [ {
         "id" : "ca0a554f-dddd-4fbf-875c-78c052c1812b",
         "name" : "delete-account",
@@ -539,6 +540,101 @@
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
+    "defaultClientScopes" : [ "web-origins", "acr", "profile", "roles", "email" ],
+    "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ]
+  }, {
+    "id" : "34b97aeb-1f88-4c47-9643-388282053e39",
+    "clientId" : "epa-poc-backend",
+    "rootUrl" : "",
+    "surrogateAuthRequired" : false,
+    "enabled" : true,
+    "alwaysDisplayInConsole" : false,
+    "clientAuthenticatorType" : "client-secret",
+    "secret" : "aUa3M8s7aPanrN1KMH6OIwtjZGGY0TET",
+    "redirectUris" : [ "http://localhost:8686/*" ],
+    "webOrigins" : [ "http://localhost:8686" ],
+    "notBefore" : 0,
+    "bearerOnly" : false,
+    "consentRequired" : false,
+    "standardFlowEnabled" : false,
+    "implicitFlowEnabled" : false,
+    "directAccessGrantsEnabled" : false,
+    "serviceAccountsEnabled" : true,
+    "publicClient" : false,
+    "frontchannelLogout" : false,
+    "protocol" : "openid-connect",
+    "attributes" : {
+      "saml.force.post.binding" : "false",
+      "saml.multivalued.roles" : "false",
+      "frontchannel.logout.session.required" : "false",
+      "oauth2.device.authorization.grant.enabled" : "false",
+      "backchannel.logout.revoke.offline.tokens" : "false",
+      "saml.server.signature.keyinfo.ext" : "false",
+      "use.refresh.tokens" : "true",
+      "oidc.ciba.grant.enabled" : "false",
+      "backchannel.logout.session.required" : "true",
+      "client_credentials.use_refresh_token" : "false",
+      "require.pushed.authorization.requests" : "false",
+      "saml.client.signature" : "false",
+      "saml.allow.ecp.flow" : "false",
+      "id.token.as.detached.signature" : "false",
+      "saml.assertion.signature" : "false",
+      "client.secret.creation.time" : "1656499568",
+      "saml.encrypt" : "false",
+      "saml.server.signature" : "false",
+      "exclude.session.state.from.auth.response" : "false",
+      "saml.artifact.binding" : "false",
+      "saml_force_name_id_format" : "false",
+      "acr.loa.map" : "{}",
+      "tls.client.certificate.bound.access.tokens" : "false",
+      "saml.authnstatement" : "false",
+      "display.on.consent.screen" : "false",
+      "token.response.type.bearer.lower-case" : "false",
+      "saml.onetimeuse.condition" : "false"
+    },
+    "authenticationFlowBindingOverrides" : { },
+    "fullScopeAllowed" : true,
+    "nodeReRegistrationTimeout" : -1,
+    "protocolMappers" : [ {
+      "id" : "bb918f3b-9f61-44c9-9e72-719e6d93f39a",
+      "name" : "Client ID",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "clientId",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "clientId",
+        "jsonType.label" : "String"
+      }
+    }, {
+      "id" : "73d3b442-8303-4b68-9736-2bc5ff8ef51c",
+      "name" : "Client IP Address",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "clientAddress",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "clientAddress",
+        "jsonType.label" : "String"
+      }
+    }, {
+      "id" : "711c174f-5cbc-4b91-9ca2-71861a8eaefd",
+      "name" : "Client Host",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "clientHost",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "clientHost",
+        "jsonType.label" : "String"
+      }
+    } ],
     "defaultClientScopes" : [ "web-origins", "acr", "profile", "roles", "email" ],
     "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ]
   }, {
@@ -1918,7 +2014,7 @@
     "alias" : "Level 2",
     "config" : {
       "loa-condition-level" : "2",
-      "loa-max-age" : "3600"
+      "loa-max-age" : "300"
     }
   }, {
     "id" : "f6867b60-fc6d-4bcc-ae1f-8fa4d8576c48",
@@ -2129,6 +2225,28 @@
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
+  }, {
+    "id" : "5d1f52fc-097b-4659-83bf-b284cda6f30a",
+    "createdTimestamp" : 1656500152099,
+    "username" : "domme-test",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Ich",
+    "lastName" : "Du",
+    "email" : "some-email@epa-poc.de",
+    "credentials" : [ {
+      "id" : "297c8902-f638-4c3f-843c-462a502e4352",
+      "type" : "password",
+      "createdDate" : 1656500152149,
+      "secretData" : "{\"value\":\"uGpfgH/JTpNRgtiewjnDwJroyaCxL9Gfz1com69VH6WMGrlbbbxRcudkaNFNsW+YAhpyVTYMSsMg7mxeR04Vhg==\",\"salt\":\"8F3PSRW8K+3e+WS/D0khqQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "realmRoles" : [ "default-roles-epa-poc" ],
+    "notBefore" : 0,
+    "groups" : [ "/representative" ]
   }, {
     "id" : "16803954-bd42-40e1-8fba-a847f9ba8f78",
     "createdTimestamp" : 1655900463279,
@@ -2539,6 +2657,23 @@
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
+  }, {
+    "id" : "b22f64b0-993b-443b-8338-4dec5fced493",
+    "createdTimestamp" : 1656499568086,
+    "username" : "service-account-epa-poc-backend",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "serviceAccountClientId" : "epa-poc-backend",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "realmRoles" : [ "default-roles-epa-poc" ],
+    "clientRoles" : {
+      "realm-management" : [ "manage-users" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
   }, {
     "id" : "79126fa6-4323-4376-8da8-46ec6dedbe02",
     "createdTimestamp" : 1655899706177,
