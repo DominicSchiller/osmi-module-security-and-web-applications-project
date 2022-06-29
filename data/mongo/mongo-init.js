@@ -20,6 +20,7 @@ db.createCollection('representatives');
 db.createCollection('addresses');
 db.createCollection('insurances');
 db.createCollection('facilities');
+db.createCollection('records');
 
 function createOrUpdateAddress(
     street,
@@ -136,7 +137,8 @@ function createPatient(
             height: parseInt(height)
         },
         doctors: [],
-        representatives: []
+        representatives: [],
+        records: []
     });
 }
 
@@ -186,6 +188,33 @@ function createRepresentative(
     });
 }
 
+function createRecord(keycloakPatientId) {
+    let patient = db.patients.findOne( {_id: keycloakPatientId} )
+    let recordType = getRandomRecordType()
+    let recordContent = getRecordContent(recordType)
+
+    patient.doctors.forEach(doctorId => {
+        let maxRecordsCount = getRandomNumber(1, getMaxRecordCount(patient.age))
+        for(var i=0; i<=maxRecordsCount; i++) {
+            let recordResult = db.records.insertOne({
+                patient: keycloakPatientId,
+                doctor: doctorId,
+                date: getRandomDate('02/13/2016', '07/16/2022'),
+                type: recordType,
+                content: recordContent
+            })
+            db.patients.update(
+                { "_id": keycloakPatientId },
+                {
+                    $push: {
+                        records: recordResult.insertedId
+                    }
+                }
+            );
+        }
+    });
+}
+
 function assignDoctorToPatient(
     doctorKeycloakId,
     patientKeycloakId
@@ -228,6 +257,82 @@ function assignRepresentativeToPatient(
                 }
             }
         )
+}
+
+/*
+#######################
+Helper functions
+#######################
+*/
+
+function getRandomDate(date1, date2){
+    function randomValueBetween(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    var date1 = date1 || '01-01-1970'
+    var date2 = date2 || new Date().toLocaleDateString()
+    date1 = new Date(date1).getTime()
+    date2 = new Date(date2).getTime()
+
+    // let dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    if( date1>date2){
+        return new Date(randomValueBetween(date2,date1)).getTime()//.toLocaleDateString("de-DE")   
+    } else{
+        return new Date(randomValueBetween(date1, date2)).getTime()//.toLocaleDateString("de-DE")  
+
+    }
+}
+
+function getRandomItem(items) {
+    return items[Math.floor(Math.random()*items.length)];
+}
+
+function getRandomNumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min +1)) + min;
+}
+
+function getRandomRecordType() {
+    let recordTypes = ["Arbeitsunfähigkeitsbescheinigung", "Arztbrief", "Befund", "Rezept", "Überweisung"]
+    return getRandomItem(recordTypes)
+}
+
+function getMaxRecordCount(age) {
+    if (age < 20) {
+        return 1
+    }
+    if (age < 30 || age < 40) {
+        return 3
+    }
+    if (age < 50) {
+        return 5
+    }
+    if (age < 60) {
+        return 7
+    }
+    return 10
+}
+
+function getRecordContent(recordType) {
+    switch(recordType) {
+        case "Arbeitsunfähigkeitsbescheinigung":
+        case "Rezept":
+            return "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+        case "Arztbrief":
+        case "Befund":
+            return `
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer
+            `
+        case "Überweisung":
+            return "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    }
 }
 
 /*
@@ -351,6 +456,7 @@ assignDoctorToPatient('46a64ab9-253e-4d94-a26a-ddd4fed31b2f', '03419e71-b4b3-43b
 assignDoctorToPatient('58852ee4-2a60-4101-80dc-61e9497aaded', '03419e71-b4b3-43bc-ad9c-166b7912bd6e')
 assignDoctorToPatient('16803954-bd42-40e1-8fba-a847f9ba8f78', '03419e71-b4b3-43bc-ad9c-166b7912bd6e')
 
+
 /*
 #################################################
 Assign Representative <--> Patient Relationships
@@ -362,3 +468,20 @@ assignRepresentativeToPatient('52bf3fb2-e3a6-4585-8c14-793b73d92307', 'ed129ff3-
 assignRepresentativeToPatient('7c804ed3-25f3-45d4-96eb-4ec924f85e7c', '689569fd-2283-4e32-8898-b94e77d8a817')
 assignRepresentativeToPatient('24464036-38bc-48ec-bce0-b4aa6e43a5de', 'c3540aaa-728d-441e-8898-f5c157d7f941')
 assignRepresentativeToPatient('45bf36f8-21d2-4c48-81c2-00ea462d30d5', '3326d733-31fb-4313-8070-68c705accbd5')
+
+
+/*
+#########################
+Create Patient Records
+#########################
+*/
+createRecord('a7f6550d-80ce-4bc2-b6e9-434c014c8a8b');
+createRecord('d1822a8d-7951-4fae-beee-25feee17c6af');
+createRecord('689569fd-2283-4e32-8898-b94e77d8a817');
+createRecord('45215f7d-e7cd-47d4-a27c-6734b8f1424c');
+createRecord('c3540aaa-728d-441e-8898-f5c157d7f941');
+createRecord('79126fa6-4323-4376-8da8-46ec6dedbe02');
+createRecord('ed129ff3-5732-4d11-9ba6-39a53efd7386');
+createRecord('eab56c5a-f5be-4c86-8b1d-e2be8eeb80da');
+createRecord('3326d733-31fb-4313-8070-68c705accbd5');
+createRecord('03419e71-b4b3-43bc-ad9c-166b7912bd6e');
