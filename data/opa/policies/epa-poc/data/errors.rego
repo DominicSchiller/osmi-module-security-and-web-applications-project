@@ -23,6 +23,11 @@ access_level_2_required := {
     "message": "A minimum access level of 2 is required"
 }
 
+access_level_3_required := {
+    "status": 3,
+    "message": "A minimum access level of 3 is required"
+}
+
 # Patient related errors
 
 bad_access_patientId_missing := {
