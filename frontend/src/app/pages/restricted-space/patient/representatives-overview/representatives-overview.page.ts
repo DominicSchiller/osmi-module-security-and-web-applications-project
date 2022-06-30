@@ -35,6 +35,13 @@ export class RepresentativesOverviewPage implements OnInit {
     });
 
     this.performRetryActions()
+
+    this.patientApiService.onRetryActionSucceeded.subscribe(succeededAction => {
+      switch (succeededAction.actionId) {
+        case PatientApiServiceAction.removeRepresentative:
+          this.loadRepresentatives()
+      }
+    })
   }
 
   private performRetryActions() {

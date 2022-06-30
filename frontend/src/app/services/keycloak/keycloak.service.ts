@@ -40,6 +40,10 @@ export class KeycloakService {
     })
   }
 
+  public async refreshToken() {
+    return await this.keycloakService.updateToken(0)
+  }
+
   public async getToken() {
     try {
       let token = await this.keycloakService.getToken()
@@ -49,8 +53,6 @@ export class KeycloakService {
       KeycloakService.handleError(error)
       return Promise.reject(error)
     }
-    // let access_token = JSON.parse(atob(token.split('.')[1]));
-    // this.isSteppedUp = access_token.acr == "aal2"
   }
 
   public async getCurrentAccessLevel(): Promise<EpaKeycloakAccessLevel> {

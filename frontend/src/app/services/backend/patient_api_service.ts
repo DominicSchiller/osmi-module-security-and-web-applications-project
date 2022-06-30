@@ -1,8 +1,8 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {Observable, of} from "rxjs";
-import {catchError, retry, tap} from 'rxjs/operators';
-import { HealthInsurance, HealthInsuranceDetails } from "src/app/models/health_insurance";
+import {Observable, of, Subject} from "rxjs";
+import {catchError} from 'rxjs/operators';
+import {HealthInsuranceDetails } from "src/app/models/health_insurance";
 import {Patient} from "src/app/models/patient";
 import { Representative } from "src/app/models/representative";
 import { EpaKeycloakAccessLevel } from "../keycloak/epa-keycloak-access-level";
@@ -21,17 +21,18 @@ export class PatientAPIService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
+  private onRetryActionSucceededSubject: Subject<RetryAction> = new Subject<RetryAction>()
+  public onRetryActionSucceeded: Observable<RetryAction> = this.onRetryActionSucceededSubject.asObservable()
+
   constructor(
     private httpClient: HttpClient,
     private keycloakService: KeycloakService,
     private actionCache: RequestCacheService
-  ) {
-  }
+  ) {}
 
   performRetryActions(userId: string) { // TODO: generalize perform retry actions & try to relate required acr value to retry action
    let retryActions = this.actionCache.getRetryActions(userId)
     retryActions.forEach(action => {
-      console.warn("Will perform", action)
       switch (action.actionId) {
         case PatientApiServiceAction.removeRepresentative:
           this.retryRemoveRepresentativeAction(action)
@@ -46,12 +47,13 @@ export class PatientAPIService {
     let currentAccessLevel = await this.keycloakService.getCurrentAccessLevel()
     if (currentAccessLevel < EpaKeycloakAccessLevel.aal3) {
       this.actionCache.deleteRetryAction(action)
-      return
     }
     this.removeRepresentative(
       action.params.patientId,
       action.params.representativeId).subscribe(response => {
         this.actionCache.deleteRetryAction(action)
+        this.onRetryActionSucceededSubject.next(action)
+        window.location.reload()
       })
   }
 

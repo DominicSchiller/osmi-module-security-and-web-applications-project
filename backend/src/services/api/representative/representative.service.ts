@@ -29,7 +29,7 @@ export async function removePatient(filterQuery: FilterQuery<RepresentativeDocum
         let result = await Representative
             .updateOne(filterQuery, {
                 $pullAll: {
-                    patient: [{_id: patientId }]
+                    representedPatients: [{_id: patientId }]
                 }
             })
         return result.acknowledged
