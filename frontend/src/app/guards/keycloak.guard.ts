@@ -21,6 +21,9 @@ export class KeycloakGuard extends KeycloakAuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
+    console.warn(route)
+    console.warn("")
+    console.warn(state)
     // Force the user to log in if currently unauthenticated.
     if (!this.authenticated) {
       await this.keycloak.login({

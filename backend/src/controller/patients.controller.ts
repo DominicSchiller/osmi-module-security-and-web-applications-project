@@ -38,3 +38,15 @@ export async function findPatientRepresentativesHandler(req: Request, res: Respo
         res.status(400).send(error.message);
     }
 }
+
+export async function removePatientRepresentativeHandler(req: Request, res: Response, next: NextFunction) {
+    try {
+        const { patientId } = req.params;
+        res.locals.fetchedData = await findPatient({
+            _id: patientId
+        }) as PatientDocument
+        next()
+    } catch (error: any | unknown) {
+        res.status(400).send(error.message);
+    }
+}

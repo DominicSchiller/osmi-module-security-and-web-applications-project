@@ -84,3 +84,12 @@ export async function findAllRepresentatives(filterQuery: FilterQuery<PatientDoc
         throw error
     }
 }
+
+export async function removeRepresentative(filterQuery: FilterQuery<PatientDocument>): Promise<boolean> {
+    try {
+        return true
+    } catch (error: any | unknown) {
+        log.error(error)
+        throw error
+    }
+}

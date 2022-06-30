@@ -1,6 +1,6 @@
 import {Application} from "express";
 import validateRequest from "../middleware/validateRequests";
-import {findPatientHandler, findPatientInsuranceHandler, findPatientRepresentativesHandler} from "../controller/patients.controller";
+import {findPatientHandler, findPatientInsuranceHandler, findPatientRepresentativesHandler, removePatientRepresentativeHandler} from "../controller/patients.controller";
 import {OPAPolicyEndpoint} from "../services/opa/models/opa_policy_endpoint";
 import {PatientRoutes} from "./patient.routes";
 
@@ -20,4 +20,9 @@ export default function(app: Application) {
     app.get(
         PatientRoutes.getRepresentatives,
         findPatientRepresentativesHandler, validateRequest(OPAPolicyEndpoint.getPatientRepresentatives))
+
+    app.delete(
+        PatientRoutes.removeRepresentative,
+        removePatientRepresentativeHandler, validateRequest(OPAPolicyEndpoint.removePatientRepresentative)
+    )
 }

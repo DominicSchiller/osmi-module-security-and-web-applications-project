@@ -33,10 +33,10 @@ export class KeycloakService {
     return await this.keycloakService.logout("http://localhost:8787");
   }
 
-  public async stepUp(accessLevel: EpaKeycloakAccessLevel) {
+  public async stepUp(accessLevel: EpaKeycloakAccessLevel = EpaKeycloakAccessLevel.aal1) {
     await this.keycloakService.login({
       redirectUri: window.location.href,
-      acr: { values: [accessLevel], essential: false }
+      acr: { values: [accessLevel], essential: accessLevel >= EpaKeycloakAccessLevel.aal3 }
     })
   }
 
@@ -51,6 +51,12 @@ export class KeycloakService {
     }
     // let access_token = JSON.parse(atob(token.split('.')[1]));
     // this.isSteppedUp = access_token.acr == "aal2"
+  }
+
+  public async getCurrentAccessLevel(): Promise<EpaKeycloakAccessLevel> {
+    let token = await this.getToken()
+    let access_token = JSON.parse(atob(token.split('.')[1]));
+    return access_token.acr as EpaKeycloakAccessLevel
   }
   //</editor-fold>
 

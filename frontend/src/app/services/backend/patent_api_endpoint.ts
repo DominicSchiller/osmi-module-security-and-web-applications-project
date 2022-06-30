@@ -1,5 +1,5 @@
 export enum PatientAPIEndpoint {
-    getPatient = "patient",
-    getInsurance = "insurance-details",
-    getRepresentatives = "representatives"
+    patient = "patient",
+    insuranceDetails = "insurance-details",
+    representatives = "representatives"
 }

@@ -48,9 +48,12 @@ export class AccessLevelInterceptor implements HttpInterceptor {
             console.error("wrong error type")
             return false
         }
+        console.warn(errors)
         let requiredAccessLevel = errors.some(error => error.status === BackendErrorStatus.aal2Required) ? 
             EpaKeycloakAccessLevel.aal2
-            : null
+            : errors.some(error => error.status === BackendErrorStatus.aal3Required) ?
+                EpaKeycloakAccessLevel.aal3
+                : null
         if (requiredAccessLevel) {
             this.keycloakService.stepUp(requiredAccessLevel)
         }

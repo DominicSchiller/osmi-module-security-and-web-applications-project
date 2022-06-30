@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HealthInsuranceDetails } from 'src/app/models/health_insurance';
 import { Representative } from 'src/app/models/representative';
@@ -17,20 +17,26 @@ export class InsuranceDetailsPage implements OnInit {
   public insuranceDetails: Observable<HealthInsuranceDetails> = this.insuranceDetailsSubject.asObservable()
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private patientApiService: PatientAPIService
   ) { }
 
   ngOnInit() {
     this.route.queryParams
-    // .filter(params => params.order)
     .subscribe(params => {
         if (params.patientId) {
           this.patientId = params.patientId
           this.loadInsuranceDetails()
         }
     });
-   
+   console.info(document.referrer)
+  }
+
+  public navigateBack() {
+    this.router.navigate(['/restricted-space/patient'], {
+      queryParams: {id: this.patientId }
+    })
   }
 
   private loadInsuranceDetails() {

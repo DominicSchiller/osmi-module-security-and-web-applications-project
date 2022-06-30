@@ -7,5 +7,6 @@ export class BackendError {
 
 export enum BackendErrorStatus {
     badAccess = 1,
-    aal2Required = 2
+    aal2Required = 2,
+    aal3Required = 3
 }

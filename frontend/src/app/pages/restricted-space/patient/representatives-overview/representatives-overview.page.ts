@@ -1,8 +1,9 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Representative } from 'src/app/models/representative';
-import { PatientAPIService } from 'src/app/services/backend/patient_api_service';
+import { PatientAPIService, PatientApiServiceAction } from 'src/app/services/backend/patient_api_service';
 
 @Component({
   selector: 'app-representatives-overview',
@@ -16,25 +17,33 @@ export class RepresentativesOverviewPage implements OnInit {
   public representatives: Observable<Representative[]> = this.representativesSubject.asObservable()
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private patientApiService: PatientAPIService
-  ) { }
+  ) {
+    let params = new HttpParams();
+    params = params.append('newOrdNum','123');
+   }
 
   ngOnInit() {
     this.route.queryParams
-    // .filter(params => params.order)
     .subscribe(params => {
         if (params.patientId) {
           this.patientId = params.patientId
           this.loadRepresentatives()
         }
     });
+
+    this.performRetryActions()
+  }
+
+  private performRetryActions() {
+    this.patientApiService.performRetryActions(this.patientId)
   }
 
   private loadRepresentatives() {
     this.patientApiService.getRepresentatives(this.patientId)
       .subscribe(representatives => {
-        console.info(representatives)
         this.representativesSubject.next(representatives)
       })
   }
@@ -47,6 +56,19 @@ export class RepresentativesOverviewPage implements OnInit {
   public getAddress(representative: Representative) {
     let address = representative.personalDetails.address
     return `${address.street}, ${address.zipCode} ${address.city}`
+  }
+
+  public removeRepresentative(representative: Representative) {
+    this.patientApiService.removeRepresentative(this.patientId, representative._id)
+      .subscribe(result => {
+        this.loadRepresentatives()
+      })
+  }
+
+  public navigateBack() {
+    this.router.navigate(['/restricted-space/patient'], {
+      queryParams: {id: this.patientId }
+    })
   }
 
 }
