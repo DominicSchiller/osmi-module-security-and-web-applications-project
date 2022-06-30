@@ -41,3 +41,21 @@ test_deny_with_aal3_and_bad_token_signature {
     not utils.contains(reasons, errors.access_level_3_required)
     utils.contains(reasons, errors.bad_access_token_signature)
 }
+
+test_deny_with_no_representative_of_patient {
+    not remove_representative.isAllowed with input as input_requests.no_representative_of_patient_aal3
+    reasons := remove_representative.reasons with input as input_requests.no_representative_of_patient_aal3
+    utils.contains(reasons, errors.bad_access_no_representative_of_patient)
+}
+
+test_deny_with_no_representative_data {
+    not remove_representative.isAllowed with input as input_requests.no_reprsentative_data_aal3
+    reasons := remove_representative.reasons with input as input_requests.no_reprsentative_data_aal3
+    utils.contains(reasons, errors.bad_access_no_representative_data)
+}
+
+test_deny_with_no_representative_data {
+    not remove_representative.isAllowed with input as input_requests.no_patient_data_aal3
+    reasons := remove_representative.reasons with input as input_requests.no_patient_data_aal3
+    utils.contains(reasons, errors.bad_access_no_patient_data)
+}

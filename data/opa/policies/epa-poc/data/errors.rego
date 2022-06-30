@@ -39,3 +39,25 @@ bad_access_patientId_mismatch := {
     "status": 1,
     "message": "The request contains a mismatching patientId param"
 }
+
+bad_access_no_patient_data := {
+    "status": 1,
+    "message": "The patient odes not exist"
+}
+
+bad_access_no_representative_of_patient := {
+     "status": 1,
+    "message": "No representative of given patient"
+}
+
+# Representative related errors
+
+bad_access_no_representative_data := {
+    "status": 1,
+    "message": "The representative does not exist"
+}
+
+bad_access_no_patient_of_representative := {
+     "status": 1,
+    "message": "No patient of given representative"
+}

@@ -133,8 +133,18 @@ all_correct_aal3 := {
                 "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKRWJEcHlydWZzbzRJRGdqZGdTdnVjTFFvelRGc0FXbWl3Z2VTLU85TExVIn0.eyJleHAiOjE2NTY1Njg4NjUsImlhdCI6MTY1NjU2ODU2NSwiYXV0aF90aW1lIjoxNjU2NTY4NTY1LCJqdGkiOiI5YzQyNDE3OS1hNDVmLTQyN2MtOTM4YS1iMTVlZjk5OTE2OWQiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgxODEvcmVhbG1zL2VwYS1wb2MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzMyNmQ3MzMtMzFmYi00MzEzLTgwNzAtNjhjNzA1YWNjYmQ1IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZXBhLXBvYy1mcm9udGVuZCIsIm5vbmNlIjoiZjM1NDVlNTUtM2NlMi00YWIyLThiNjktMDAwMmYxYzgxYmE1Iiwic2Vzc2lvbl9zdGF0ZSI6IjU3MWRjMmU1LTE4NGEtNGVmYS04NzBjLTk0Y2JjZmFkY2ZkZCIsImFjciI6ImVwYS1wb2MtYWFsMyIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjgxODEvKiIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4NyIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4Ny8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWVwYS1wb2MiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI1NzFkYzJlNS0xODRhLTRlZmEtODcwYy05NGNiY2ZhZGNmZGQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGcmFuemlza2EgRnJleXRhZyIsInByZWZlcnJlZF91c2VybmFtZSI6ImZmcmV5dGFnIiwiZ2l2ZW5fbmFtZSI6IkZyYW56aXNrYSIsImZhbWlseV9uYW1lIjoiRnJleXRhZyIsImVtYWlsIjoiZnJhbnppc2thLmZyZXl0YWdAZXBhLXBvYy5kZSJ9.Vy7820k2Vmb31FTQudEOYyroHeoX7cYoxMzFBHStXJIANXZzh9BG2YD2uIbCFCWpCCSY9B-lU1emxbNNXjIYHm-SIu29B4Jwp4B-eFLorZl4JZETelFv-sjq3utulvX45s2YQeHy2UU3gq-DQFm9zq3Gp9cxAessEa8FHl82ZlMEJu4psZepigTctSj_QDZmXinKr51VRIJ-UhrVF2XjIlxllv-WZe4U5GNDxCwvCD6xmrmQgkF11WP8AaVyf-XoFPFAKthA-17rU7g9G9SoJkyptWKTGAsZrYOp-UMn-PZR9yzhdXLuDwoWgfq0N0CKanf3q1N-O4zq_s6G38hesA"
             },
             "params": {
-                "patientId": "3326d733-31fb-4313-8070-68c705accbd5"
+                "patientId": "3326d733-31fb-4313-8070-68c705accbd5",
+                "representativeId": "45bf36f8-21d2-4c48-81c2-00ea462d30d5"
             }
+        }
+    },
+    "fetchedData": {
+        "patient": {
+            "_id": "3326d733-31fb-4313-8070-68c705accbd5",
+            "representatives": ["45bf36f8-21d2-4c48-81c2-00ea462d30d5"]
+        },
+        "representative": {
+            "_id": "45bf36f8-21d2-4c48-81c2-00ea462d30d5"
         }
     }
 }
@@ -205,5 +215,102 @@ bad_token_signature_aal3 := {
                 "patientId": "3326d733-31fb-4313-8070-68c705accbd5"
             }
         }
+    }
+}
+
+no_representative_of_patient_aal3 := {
+     "keycloak": {
+        "user_info": {
+            "sub": "3326d733-31fb-4313-8070-68c705accbd5",
+            "email_verified": true,
+            "name": "Franziska Freytag",
+            "preferred_username": "ffreytag",
+            "given_name": "Franziska",
+            "family_name": "Freytag",
+            "email": "franziska.freytag@epa-poc.de"
+        }
+    },
+    "attributes": {
+        "request": {
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKRWJEcHlydWZzbzRJRGdqZGdTdnVjTFFvelRGc0FXbWl3Z2VTLU85TExVIn0.eyJleHAiOjE2NTY1Njg4NjUsImlhdCI6MTY1NjU2ODU2NSwiYXV0aF90aW1lIjoxNjU2NTY4NTY1LCJqdGkiOiI5YzQyNDE3OS1hNDVmLTQyN2MtOTM4YS1iMTVlZjk5OTE2OWQiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgxODEvcmVhbG1zL2VwYS1wb2MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzMyNmQ3MzMtMzFmYi00MzEzLTgwNzAtNjhjNzA1YWNjYmQ1IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZXBhLXBvYy1mcm9udGVuZCIsIm5vbmNlIjoiZjM1NDVlNTUtM2NlMi00YWIyLThiNjktMDAwMmYxYzgxYmE1Iiwic2Vzc2lvbl9zdGF0ZSI6IjU3MWRjMmU1LTE4NGEtNGVmYS04NzBjLTk0Y2JjZmFkY2ZkZCIsImFjciI6ImVwYS1wb2MtYWFsMyIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjgxODEvKiIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4NyIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4Ny8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWVwYS1wb2MiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI1NzFkYzJlNS0xODRhLTRlZmEtODcwYy05NGNiY2ZhZGNmZGQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGcmFuemlza2EgRnJleXRhZyIsInByZWZlcnJlZF91c2VybmFtZSI6ImZmcmV5dGFnIiwiZ2l2ZW5fbmFtZSI6IkZyYW56aXNrYSIsImZhbWlseV9uYW1lIjoiRnJleXRhZyIsImVtYWlsIjoiZnJhbnppc2thLmZyZXl0YWdAZXBhLXBvYy5kZSJ9.Vy7820k2Vmb31FTQudEOYyroHeoX7cYoxMzFBHStXJIANXZzh9BG2YD2uIbCFCWpCCSY9B-lU1emxbNNXjIYHm-SIu29B4Jwp4B-eFLorZl4JZETelFv-sjq3utulvX45s2YQeHy2UU3gq-DQFm9zq3Gp9cxAessEa8FHl82ZlMEJu4psZepigTctSj_QDZmXinKr51VRIJ-UhrVF2XjIlxllv-WZe4U5GNDxCwvCD6xmrmQgkF11WP8AaVyf-XoFPFAKthA-17rU7g9G9SoJkyptWKTGAsZrYOp-UMn-PZR9yzhdXLuDwoWgfq0N0CKanf3q1N-O4zq_s6G38hesA"
+            },
+            "params": {
+                "patientId": "3326d733-31fb-4313-8070-68c705accbd5",
+                "representativeId": "45bf36f8-21d2-4c48-81c2-00ea462d30d9"
+            }
+        }
+    },
+    "fetchedData": {
+        "patient": {
+            "_id": "3326d733-31fb-4313-8070-68c705accbd5",
+            "representatives": ["45bf36f8-21d2-4c48-81c2-00ea462d30d5"]
+        },
+        "representative": {
+            "_id": "45bf36f8-21d2-4c48-81c2-00ea462d30d5"
+        }
+    }
+}
+
+no_patient_data_aal3 := {
+     "keycloak": {
+        "user_info": {
+            "sub": "3326d733-31fb-4313-8070-68c705accbd5",
+            "email_verified": true,
+            "name": "Franziska Freytag",
+            "preferred_username": "ffreytag",
+            "given_name": "Franziska",
+            "family_name": "Freytag",
+            "email": "franziska.freytag@epa-poc.de"
+        }
+    },
+    "attributes": {
+        "request": {
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKRWJEcHlydWZzbzRJRGdqZGdTdnVjTFFvelRGc0FXbWl3Z2VTLU85TExVIn0.eyJleHAiOjE2NTY1Njg4NjUsImlhdCI6MTY1NjU2ODU2NSwiYXV0aF90aW1lIjoxNjU2NTY4NTY1LCJqdGkiOiI5YzQyNDE3OS1hNDVmLTQyN2MtOTM4YS1iMTVlZjk5OTE2OWQiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgxODEvcmVhbG1zL2VwYS1wb2MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzMyNmQ3MzMtMzFmYi00MzEzLTgwNzAtNjhjNzA1YWNjYmQ1IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZXBhLXBvYy1mcm9udGVuZCIsIm5vbmNlIjoiZjM1NDVlNTUtM2NlMi00YWIyLThiNjktMDAwMmYxYzgxYmE1Iiwic2Vzc2lvbl9zdGF0ZSI6IjU3MWRjMmU1LTE4NGEtNGVmYS04NzBjLTk0Y2JjZmFkY2ZkZCIsImFjciI6ImVwYS1wb2MtYWFsMyIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjgxODEvKiIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4NyIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4Ny8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWVwYS1wb2MiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI1NzFkYzJlNS0xODRhLTRlZmEtODcwYy05NGNiY2ZhZGNmZGQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGcmFuemlza2EgRnJleXRhZyIsInByZWZlcnJlZF91c2VybmFtZSI6ImZmcmV5dGFnIiwiZ2l2ZW5fbmFtZSI6IkZyYW56aXNrYSIsImZhbWlseV9uYW1lIjoiRnJleXRhZyIsImVtYWlsIjoiZnJhbnppc2thLmZyZXl0YWdAZXBhLXBvYy5kZSJ9.Vy7820k2Vmb31FTQudEOYyroHeoX7cYoxMzFBHStXJIANXZzh9BG2YD2uIbCFCWpCCSY9B-lU1emxbNNXjIYHm-SIu29B4Jwp4B-eFLorZl4JZETelFv-sjq3utulvX45s2YQeHy2UU3gq-DQFm9zq3Gp9cxAessEa8FHl82ZlMEJu4psZepigTctSj_QDZmXinKr51VRIJ-UhrVF2XjIlxllv-WZe4U5GNDxCwvCD6xmrmQgkF11WP8AaVyf-XoFPFAKthA-17rU7g9G9SoJkyptWKTGAsZrYOp-UMn-PZR9yzhdXLuDwoWgfq0N0CKanf3q1N-O4zq_s6G38hesA"
+            },
+            "params": {
+                "patientId": "3326d733-31fb-4313-8070-68c705accbd5",
+                "representativeId": "45bf36f8-21d2-4c48-81c2-00ea462d30d9"
+            }
+        }
+    },
+    "fetchedData": {
+        "patient": null,
+        "representative": {
+            "_id": "45bf36f8-21d2-4c48-81c2-00ea462d30d5"
+        }
+    }
+}
+
+no_reprsentative_data_aal3 := {
+     "keycloak": {
+        "user_info": {
+            "sub": "3326d733-31fb-4313-8070-68c705accbd5",
+            "email_verified": true,
+            "name": "Franziska Freytag",
+            "preferred_username": "ffreytag",
+            "given_name": "Franziska",
+            "family_name": "Freytag",
+            "email": "franziska.freytag@epa-poc.de"
+        }
+    },
+    "attributes": {
+        "request": {
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKRWJEcHlydWZzbzRJRGdqZGdTdnVjTFFvelRGc0FXbWl3Z2VTLU85TExVIn0.eyJleHAiOjE2NTY1Njg4NjUsImlhdCI6MTY1NjU2ODU2NSwiYXV0aF90aW1lIjoxNjU2NTY4NTY1LCJqdGkiOiI5YzQyNDE3OS1hNDVmLTQyN2MtOTM4YS1iMTVlZjk5OTE2OWQiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgxODEvcmVhbG1zL2VwYS1wb2MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzMyNmQ3MzMtMzFmYi00MzEzLTgwNzAtNjhjNzA1YWNjYmQ1IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZXBhLXBvYy1mcm9udGVuZCIsIm5vbmNlIjoiZjM1NDVlNTUtM2NlMi00YWIyLThiNjktMDAwMmYxYzgxYmE1Iiwic2Vzc2lvbl9zdGF0ZSI6IjU3MWRjMmU1LTE4NGEtNGVmYS04NzBjLTk0Y2JjZmFkY2ZkZCIsImFjciI6ImVwYS1wb2MtYWFsMyIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjgxODEvKiIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4NyIsImh0dHA6Ly9sb2NhbGhvc3Q6ODc4Ny8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWVwYS1wb2MiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJzaWQiOiI1NzFkYzJlNS0xODRhLTRlZmEtODcwYy05NGNiY2ZhZGNmZGQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGcmFuemlza2EgRnJleXRhZyIsInByZWZlcnJlZF91c2VybmFtZSI6ImZmcmV5dGFnIiwiZ2l2ZW5fbmFtZSI6IkZyYW56aXNrYSIsImZhbWlseV9uYW1lIjoiRnJleXRhZyIsImVtYWlsIjoiZnJhbnppc2thLmZyZXl0YWdAZXBhLXBvYy5kZSJ9.Vy7820k2Vmb31FTQudEOYyroHeoX7cYoxMzFBHStXJIANXZzh9BG2YD2uIbCFCWpCCSY9B-lU1emxbNNXjIYHm-SIu29B4Jwp4B-eFLorZl4JZETelFv-sjq3utulvX45s2YQeHy2UU3gq-DQFm9zq3Gp9cxAessEa8FHl82ZlMEJu4psZepigTctSj_QDZmXinKr51VRIJ-UhrVF2XjIlxllv-WZe4U5GNDxCwvCD6xmrmQgkF11WP8AaVyf-XoFPFAKthA-17rU7g9G9SoJkyptWKTGAsZrYOp-UMn-PZR9yzhdXLuDwoWgfq0N0CKanf3q1N-O4zq_s6G38hesA"
+            },
+            "params": {
+                "patientId": "3326d733-31fb-4313-8070-68c705accbd5",
+                "representativeId": "45bf36f8-21d2-4c48-81c2-00ea462d30d9"
+            }
+        }
+    },
+    "fetchedData": {
+        "patient": {
+            "_id": "3326d733-31fb-4313-8070-68c705accbd5",
+            "representatives": ["45bf36f8-21d2-4c48-81c2-00ea462d30d5"]
+        },
+        "representative": null
     }
 }
