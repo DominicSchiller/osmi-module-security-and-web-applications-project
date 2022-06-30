@@ -30,13 +30,13 @@ export class PatientAPIService {
     private actionCache: RequestCacheService
   ) {}
 
-  performRetryActions(userId: string) { // TODO: generalize perform retry actions & try to relate required acr value to retry action
+  async performRetryActions(userId: string) { // TODO: generalize perform retry actions & try to relate required acr value to retry action
    let retryActions = this.actionCache.getRetryActions(userId)
     retryActions.forEach(action => {
       switch (action.actionId) {
         case PatientApiServiceAction.removeRepresentative:
           this.retryRemoveRepresentativeAction(action)
-        break
+          break
         default:
           break // ignore
       }
@@ -44,7 +44,7 @@ export class PatientAPIService {
   }
 
   private async retryRemoveRepresentativeAction(action: RetryAction) {
-    let currentAccessLevel = await this.keycloakService.getCurrentAccessLevel()
+    let currentAccessLevel = await this.keycloakService.currentAccessLevel()
     if (currentAccessLevel < EpaKeycloakAccessLevel.aal3) {
       this.actionCache.deleteRetryAction(action)
     }
@@ -52,8 +52,9 @@ export class PatientAPIService {
       action.params.patientId,
       action.params.representativeId).subscribe(response => {
         this.actionCache.deleteRetryAction(action)
-        this.onRetryActionSucceededSubject.next(action)
-        window.location.reload()
+        this.keycloakService.refreshAccessLevel().then(() => {
+          this.onRetryActionSucceededSubject.next(action)
+        })
       })
   }
 

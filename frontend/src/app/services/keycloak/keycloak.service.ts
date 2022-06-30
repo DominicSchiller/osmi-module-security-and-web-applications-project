@@ -6,6 +6,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {EpaKeycloakAccessLevel} from "./epa-keycloak-access-level";
 import {KeycloakUserInfo} from "../backend/models/keycloak_user_info";
 import {KeycloakUserRole} from "./keycloak-user-role";
+import { HttpRequest } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -22,16 +23,12 @@ export class KeycloakService {
   //</editor-fold>
 
   //<editor-fold desc="Init">
-  constructor(public keycloakService: KeycloakAngular.KeycloakService) {
+  constructor(private keycloakService: KeycloakAngular.KeycloakService) {
     this.initKeycloakEventHandler()
   }
   //</editor-fold>
 
   //<editor-fold desc="Public API">
-
-  public async logout() {
-    return await this.keycloakService.logout("http://localhost:8787");
-  }
 
   public async stepUp(accessLevel: EpaKeycloakAccessLevel = EpaKeycloakAccessLevel.aal1) {
     await this.keycloakService.login({
@@ -40,11 +37,45 @@ export class KeycloakService {
     })
   }
 
-  public async refreshToken() {
-    return await this.keycloakService.updateToken(0)
+  public async logout() {
+    return await this.keycloakService.logout("http://localhost:8787");
   }
 
-  public async getToken() {
+  public async refreshAccessLevel() {
+    await this.keycloakService.init({
+      config: {
+        url: 'http://localhost:8181/',
+        realm: 'epa-poc',
+        clientId: 'epa-poc-frontend'
+      },
+      initOptions: {
+        enableLogging: true,
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri:
+          window.location.origin + '/assets/silent-check-sso.html'
+      },
+      enableBearerInterceptor: true,
+      bearerPrefix: 'Bearer',
+      bearerExcludedUrls: ['/assets'],
+      loadUserProfileAtStartUp: true, // load user information
+    });
+  }
+
+  public async refreshToken() {
+    setTimeout(async () => {
+      await this.keycloakService.updateToken(-1)
+      await this.getToken()
+    }, 5000)
+  }
+
+  public async currentAccessLevel(): Promise<EpaKeycloakAccessLevel> {
+    let token = await this.getToken()
+    let access_token = JSON.parse(atob(token.split('.')[1]));
+    return access_token.acr as EpaKeycloakAccessLevel
+  }
+  //</editor-fold>
+
+  private async getToken() {
     try {
       let token = await this.keycloakService.getToken()
       console.info("Token received: ", token)
@@ -54,13 +85,6 @@ export class KeycloakService {
       return Promise.reject(error)
     }
   }
-
-  public async getCurrentAccessLevel(): Promise<EpaKeycloakAccessLevel> {
-    let token = await this.getToken()
-    let access_token = JSON.parse(atob(token.split('.')[1]));
-    return access_token.acr as EpaKeycloakAccessLevel
-  }
-  //</editor-fold>
 
   private async loadUserProfile() {
     this.userInfoSubject.next(new KeycloakUserInfo(
@@ -85,23 +109,23 @@ export class KeycloakService {
   private initKeycloakEventHandler() {
     this.keycloakService.keycloakEvents$.subscribe({
       next: async (event) => {
-        this.handleKeycloakEvent(event)
+        this.handleKeycloakEvent(event).then()
       }
     });
   }
 
-  private handleKeycloakEvent(event: KeycloakEvent) {
+  private async handleKeycloakEvent(event: KeycloakEvent) {
     switch (event.type) {
       case KeycloakEventType.OnReady:
         this.handleKeycloakOnReady(event.args as boolean ?? false)
         break
       case KeycloakEventType.OnAuthSuccess:
-        this.getToken()
-        console.info("Successfully authenticated!", Date(), )
+        await this.getToken()
+        console.info("Successfully authenticated!", Date())
         break
       case KeycloakEventType.OnTokenExpired:
-        console.warn("Token expired", Date())
-        this.keycloakService.updateToken()
+        await this.keycloakService.updateToken()
+        await this.getToken()
     }
   }
 

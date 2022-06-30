@@ -9,25 +9,9 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import {KeycloakService as EpaKeycloakService} from "./services/keycloak/keycloak.service";
 import { AccessLevelInterceptor } from './interceptors/access-level.interceptor';
 
-function initializeKeycloak(keycloak: KeycloakService, _: EpaKeycloakService) {
+function initializeKeycloak(keycloak: KeycloakService, epaKeycloakService: EpaKeycloakService) {
   return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8181/',
-        realm: 'epa-poc',
-        clientId: 'epa-poc-frontend'
-      },
-      initOptions: {
-        enableLogging: true,
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html'
-      },
-      enableBearerInterceptor: true,
-      bearerPrefix: 'Bearer',
-      bearerExcludedUrls: ['/assets'],
-      loadUserProfileAtStartUp: true // load user information
-    });
+   epaKeycloakService.refreshAccessLevel()
 }
 
 @NgModule({
@@ -47,7 +31,7 @@ function initializeKeycloak(keycloak: KeycloakService, _: EpaKeycloakService) {
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService, EpaKeycloakService]
-    }, 
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AccessLevelInterceptor,
