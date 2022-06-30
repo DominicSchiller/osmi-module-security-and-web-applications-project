@@ -85,9 +85,15 @@ export async function findAllRepresentatives(filterQuery: FilterQuery<PatientDoc
     }
 }
 
-export async function removeRepresentative(filterQuery: FilterQuery<PatientDocument>): Promise<boolean> {
+export async function removeRepresentative(filterQuery: FilterQuery<PatientDocument>, representativeId: string): Promise<boolean> {
     try {
-        return true
+        let result = await Patient
+            .updateOne(filterQuery, {
+                $pullAll: {
+                    representatives: [{_id: representativeId }]
+                }
+            })
+        return result.acknowledged
     } catch (error: any | unknown) {
         log.error(error)
         throw error

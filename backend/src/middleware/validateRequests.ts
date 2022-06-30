@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 import log from "../logger/logger";
 import {OPAPolicyEndpoint} from "../services/opa/models/opa_policy_endpoint";
 import {KeycloakService} from "../services/keycloak/keycloak_service";
@@ -7,7 +7,8 @@ import {OPARequestInputFactory} from "../services/opa/factories/opa_request_inpu
 
 const validateRequest = (opaEndPoint: OPAPolicyEndpoint) => async (
     req: Request,
-    res: Response
+    res: Response,
+    next: NextFunction
 ) => {
     try {
         // (1) verify keycloak access token
@@ -21,7 +22,7 @@ const validateRequest = (opaEndPoint: OPAPolicyEndpoint) => async (
             log.error(opaResponse.result.reasons)
             return res.status(401).send(opaResponse.result.reasons)
         }
-        res.send(JSON.stringify(res.locals.fetchedData))
+        next()
     } catch (error: any | unknown) {
         log.error(error);
         return res.status(401).send(error);

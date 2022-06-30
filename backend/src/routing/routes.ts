@@ -3,6 +3,7 @@ import validateRequest from "../middleware/validateRequests";
 import {findPatientHandler, findPatientInsuranceHandler, findPatientRepresentativesHandler, removePatientRepresentativeHandler} from "../controller/patients.controller";
 import {OPAPolicyEndpoint} from "../services/opa/models/opa_policy_endpoint";
 import {PatientRoutes} from "./patient.routes";
+import { findPatientInsurancePrefetchHandler, findPatientPrefetchHandler, findPatientRepresentativesPrefetchHandler, removePatientRepresentativePrefetchHandler } from "../controller/patient.prefetch.controller";
 
 export default function(app: Application) {
 
@@ -11,18 +12,19 @@ export default function(app: Application) {
      */
     app.get(
         PatientRoutes.getPatient,
-        findPatientHandler, validateRequest(OPAPolicyEndpoint.getPatient))
+        findPatientPrefetchHandler, validateRequest(OPAPolicyEndpoint.getPatient), findPatientHandler
+    )
 
     app.get(
         PatientRoutes.getInsurance,
-        findPatientInsuranceHandler, validateRequest(OPAPolicyEndpoint.getPatientInsurance))
+        findPatientInsurancePrefetchHandler, validateRequest(OPAPolicyEndpoint.getPatientInsurance), findPatientInsuranceHandler)
 
     app.get(
         PatientRoutes.getRepresentatives,
-        findPatientRepresentativesHandler, validateRequest(OPAPolicyEndpoint.getPatientRepresentatives))
+        findPatientRepresentativesPrefetchHandler, validateRequest(OPAPolicyEndpoint.getPatientRepresentatives), findPatientRepresentativesHandler)
 
     app.delete(
         PatientRoutes.removeRepresentative,
-        removePatientRepresentativeHandler, validateRequest(OPAPolicyEndpoint.removePatientRepresentative)
+        removePatientRepresentativePrefetchHandler, validateRequest(OPAPolicyEndpoint.removePatientRepresentative), removePatientRepresentativeHandler
     )
 }
