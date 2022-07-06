@@ -1,13 +1,15 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable, of, Subject} from "rxjs";
 import {catchError} from 'rxjs/operators';
+import { HTTPStatusCode } from "src/app/interceptors/models/http-status-code.model";
 import {HealthInsuranceDetails } from "src/app/models/health_insurance";
 import {Patient} from "src/app/models/patient";
 import { Representative } from "src/app/models/representative";
 import { EpaKeycloakAccessLevel } from "../keycloak/epa-keycloak-access-level";
 import { KeycloakService } from "../keycloak/keycloak.service";
 import { RequestCacheService, RetryAction } from "../request-cache/request-cache.service";
+import { BackendError, BackendErrorStatus } from "./models/backend.error.model";
 import {PatientAPIEndpoint} from "./patent_api_endpoint";
 
 
@@ -53,7 +55,9 @@ export class PatientAPIService {
       action.params.representativeId).subscribe(response => {
         this.actionCache.deleteRetryAction(action)
         this.keycloakService.refreshAccessLevel().then(() => {
-          this.onRetryActionSucceededSubject.next(action)
+          if (response) {
+            this.onRetryActionSucceededSubject.next(action)
+          }
         })
       })
   }
@@ -102,10 +106,25 @@ export class PatientAPIService {
   }
 
   private handleError<T>(errorMessage = 'operation', retryAction: RetryAction = null, result?: T) {
-    return (error: any): Observable<T> => {
-      this.actionCache.storeRetryAction(retryAction)
+    return (error: HttpErrorResponse): Observable<T> => {
+      let canStoreAction: boolean = false
+      switch (error.status) {
+        case HTTPStatusCode.unauthorized:
+          canStoreAction = (error.error as BackendError[])
+            .some(error => 
+              error.status === BackendErrorStatus.aal2Required 
+              || error.status === BackendErrorStatus.aal3Required)
+              break
+        default:
+          canStoreAction = false
+      }
+      
       console.error(`${errorMessage} failed: ${error.message}`);
-      return of(result as T);
+
+      if (canStoreAction) {
+        this.actionCache.storeRetryAction(retryAction)
+        return of(result as T);
+      }
     };
   }
 }

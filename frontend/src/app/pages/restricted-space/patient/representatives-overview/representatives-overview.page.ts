@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Representative } from 'src/app/models/representative';
 import { PatientAPIService, PatientApiServiceAction } from 'src/app/services/backend/patient_api_service';
@@ -21,7 +21,8 @@ export class RepresentativesOverviewPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private patientApiService: PatientAPIService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController
   ) {
     let params = new HttpParams();
     params = params.append('newOrdNum','123');
@@ -41,6 +42,9 @@ export class RepresentativesOverviewPage implements OnInit {
     this.patientApiService.onRetryActionSucceeded.subscribe(succeededAction => {
       switch (succeededAction.actionId) {
         case PatientApiServiceAction.removeRepresentative:
+          this.presentToast(
+            'Vertretung wurde erfolgreich aufgehoben.'
+          )
           this.loadRepresentatives()
       }
     })
@@ -100,6 +104,17 @@ export class RepresentativesOverviewPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async presentToast(message: string, isSuccess: boolean = true) {
+    const toast = await this.toastController.create({
+      message: message,
+      mode: 'ios',
+      color: isSuccess ? 'success' : 'danger',
+      icon: isSuccess ? 'checkmark-circle-outline' : 'close-circle-outline' ,
+      duration: 3000
+    });
+    await toast.present();
   }
 
 }

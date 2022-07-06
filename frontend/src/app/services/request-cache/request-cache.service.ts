@@ -25,7 +25,6 @@ import { v4 as uuidv4 } from 'uuid';
     }
 
     deleteRetryAction(deleteAction: RetryAction) {
-    
       let retryActions = JSON.parse((localStorage.getItem(RequestCacheService.retryActionsKey) ?? "[]")) as RetryAction[]
       let remainingActions = retryActions.filter(action => action != null && action.uuid !== deleteAction.uuid)
       localStorage.setItem(RequestCacheService.retryActionsKey, JSON.stringify(remainingActions))
