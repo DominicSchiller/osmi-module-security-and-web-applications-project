@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Representative } from 'src/app/models/representative';
 import { PatientAPIService, PatientApiServiceAction } from 'src/app/services/backend/patient_api_service';
@@ -19,7 +20,8 @@ export class RepresentativesOverviewPage implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private patientApiService: PatientAPIService
+    private patientApiService: PatientAPIService,
+    private alertController: AlertController
   ) {
     let params = new HttpParams();
     params = params.append('newOrdNum','123');
@@ -76,6 +78,28 @@ export class RepresentativesOverviewPage implements OnInit {
     this.router.navigate(['/restricted-space/patient'], {
       queryParams: {id: this.patientId }
     })
+  }
+
+  async presentDeleteRepresentativeAlert(representative: Representative) {
+    const alert = await this.alertController.create({
+      header: 'Vertretung aufheben',
+      message: `Möchten Sie Ihre Vertretung durch ${this.getFullName(representative)} wirklich aufheben?<br /><br />Dieser Vorgang kann nicht rückgängig gemacht werden und benötigt eine zusätzliche Authentifizierung von Ihnen.`,
+      cssClass: 'custom-alert',
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Nein',
+          cssClass: 'alert-button-cancel'
+        },
+        {
+          text: 'Ja, Vertretung aufheben',
+          cssClass: 'alert-button-confirm',
+          handler: () => { this.removeRepresentative(representative) }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

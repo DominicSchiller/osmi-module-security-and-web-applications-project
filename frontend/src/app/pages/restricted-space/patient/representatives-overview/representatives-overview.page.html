@@ -20,7 +20,10 @@
         <h2>{{getFullName(representative)}}</h2>
         <p>{{getAddress(representative)}}</p>
       </ion-label>
-      <ion-button slot="end" size="default" mode="ios" color="danger" class="list-item-action-button" (click)="removeRepresentative(representative)">
+      <ion-button 
+        slot="end" size="default" 
+        mode="ios" color="danger" class="list-item-action-button" 
+        (click)="presentDeleteRepresentativeAlert(representative)">
         <ion-icon name="close-circle"></ion-icon>
         Vertretung beenden
       </ion-button>
