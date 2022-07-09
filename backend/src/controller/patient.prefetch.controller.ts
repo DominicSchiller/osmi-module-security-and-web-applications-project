@@ -16,6 +16,10 @@ export async function findPatientRepresentativesPrefetchHandler(req: Request, re
     next()
 }
 
+export async function findPatientRecordsPrefetchHandler(req: Request, res: Response, next: NextFunction) {
+    next()
+}
+
 export async function removePatientRepresentativePrefetchHandler(req: Request, res: Response, next: NextFunction) {
     try {
         const { patientId, representativeId } = req.params;

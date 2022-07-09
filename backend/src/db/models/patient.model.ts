@@ -4,6 +4,7 @@ import HealthInsurance, {HealthInsuranceDocument} from "./health_insurance.model
 import {DBCollectionName} from "./db_collection_name";
 import Doctor, {DoctorDocument} from "./doctor.model";
 import Representative, { RepresentativeDocument } from './representative.model';
+import Record, { RecordDocument } from './record.model';
 
 export interface BodyPhysics {
     bloodType: string,
@@ -22,7 +23,8 @@ export interface PatientDocument extends Document {
     healthInsurance?: HealthInsuranceDetails
     bodyPhysics?: BodyPhysics
     doctors: [DoctorDocument]
-    representatives: [RepresentativeDocument]
+    representatives: [RepresentativeDocument],
+    records: [RecordDocument]
 }
 
 const HealthInsuranceSchema = new Schema<HealthInsuranceDetails>({
@@ -36,7 +38,8 @@ const PatientSchema = new Schema<PatientDocument>({
     healthInsurance: { type: HealthInsuranceSchema },
     bodyPhysics: { type: Object, required: true },
     doctors: [{ type: String, ref: Doctor }],
-    representatives: [{ type: String, ref: Representative }]
+    representatives: [{ type: String, ref: Representative }],
+    records: [{ type: Types.ObjectId, ref: Record }]
 }, {
     autoCreate: true
 });

@@ -1,8 +1,9 @@
 import {NextFunction, Request, Response} from "express"
-import {findAllRepresentatives, findInsurance, findPatient, removeRepresentative} from "../services/api/patient/patient.service";
+import {findAllRecords, findAllRepresentatives, findInsurance, findPatient, removeRepresentative} from "../services/api/patient/patient.service";
 import {HealthInsuranceDetails, PatientDocument} from "../db/models/patient.model";
 import { RepresentativeDocument } from "../db/models/representative.model";
 import { removePatient } from "../services/api/representative/representative.service";
+import { RecordDocument } from "../db/models/record.model";
 
 export async function findPatientHandler(req: Request, res: Response, next: NextFunction) {
     try {
@@ -54,6 +55,18 @@ export async function removePatientRepresentativeHandler(req: Request, res: Resp
 
         let isSuccess = isRepresentativeRemoved && isPatientRemoved
         res.status(isSuccess ? 200 : 500).send(isSuccess)
+    } catch (error: any | unknown) {
+        res.status(400).send(error.message);
+    }
+}
+
+export async function findPatientRecordsHandler(req: Request, res: Response, next: NextFunction) {
+    try {
+        const { patientId } = req.params;
+        let records = await findAllRecords({
+            _id: patientId
+        }) as RecordDocument[]
+        res.status(200).send(JSON.stringify(records))
     } catch (error: any | unknown) {
         res.status(400).send(error.message);
     }

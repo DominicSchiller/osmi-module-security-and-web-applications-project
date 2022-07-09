@@ -3,9 +3,12 @@ import log from "../../../logger/logger";
 import Patient, {HealthInsuranceDetails, PatientDocument} from "../../../db/models/patient.model";
 import { omit } from "lodash";
 import Representative, { RepresentativeDocument } from "../../../db/models/representative.model";
+import { RecordDocument } from "../../../db/models/record.model";
 
 require('../../../db/models/health_insurance.model')
+require('../../../db/models/doctor.model')
 require('../../../db/models/address.model')
+require('../../../db/models/user.model')
 
 export async function findPatient(filterQuery: FilterQuery<PatientDocument>): Promise<PatientDocument> {
     try {
@@ -94,6 +97,35 @@ export async function removeRepresentative(filterQuery: FilterQuery<PatientDocum
                 }
             })
         return result.acknowledged
+    } catch (error: any | unknown) {
+        log.error(error)
+        throw error
+    }
+}
+
+export async function findAllRecords(filterQuery: FilterQuery<RecordDocument>): Promise<RecordDocument[]> {
+    try {
+        // (3) fetch database data
+        let patient: PatientDocument = await Patient
+            .findOne(filterQuery)
+            .select('records')
+            .populate({
+                path: 'records',
+                populate: {
+                    path: 'doctor',
+                    populate: {
+                        path: 'personalDetails',
+                        populate: {
+                            path: 'address'
+                        }
+                    }
+                }
+            })
+            .lean()
+        if (patient.records) {
+            return patient.records as RecordDocument[]
+        }
+        return [] as RecordDocument[]
     } catch (error: any | unknown) {
         log.error(error)
         throw error

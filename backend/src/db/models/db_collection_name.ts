@@ -5,5 +5,6 @@ export enum DBCollectionName {
     healthInsurances = 'insurances',
     healthFacilities = 'facilities',
     users = 'users',
+    records = 'records',
     addresses = 'addresses'
 }
