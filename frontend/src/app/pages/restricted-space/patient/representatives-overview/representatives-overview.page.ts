@@ -30,12 +30,12 @@ export class RepresentativesOverviewPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams
-    .subscribe(params => {
+      .subscribe(params => {
         if (params.patientId) {
           this.patientId = params.patientId
           this.loadRepresentatives()
         }
-    });
+      });
 
     this.performRetryActions()
 

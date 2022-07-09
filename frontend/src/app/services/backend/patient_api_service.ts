@@ -5,6 +5,7 @@ import {catchError} from 'rxjs/operators';
 import { HTTPStatusCode } from "src/app/interceptors/models/http-status-code.model";
 import {HealthInsuranceDetails } from "src/app/models/health_insurance";
 import {Patient} from "src/app/models/patient";
+import {Record} from "src/app/models/record";
 import { Representative } from "src/app/models/representative";
 import { EpaKeycloakAccessLevel } from "../keycloak/epa-keycloak-access-level";
 import { KeycloakService } from "../keycloak/keycloak.service";
@@ -99,6 +100,13 @@ export class PatientAPIService {
               })
           )
       ));
+  }
+
+  getRecords(patientId: string): Observable<Record[]> {
+    return this.httpClient.get<Record[]>(`${this.getUrl(PatientAPIEndpoint.patient)}/${patientId}/${PatientAPIEndpoint.records}`)
+      .pipe(
+        catchError(this.handleError<Record[]>(`Get representatives for patient with id=${patientId}`))
+      );
   }
 
   private getUrl(endpoint: PatientAPIEndpoint): string {

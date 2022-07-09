@@ -52,9 +52,15 @@ export class PatientHomePage implements OnInit {
     })
   }
 
+  public showRecordsOverview() {
+    this.router.navigate(['/restricted-space/patient/records-overview'], {
+      queryParams: { patientId: this.patientId }
+    })
+  }
+
   public showRepresentativesOverview() {
     this.router.navigate(['/restricted-space/patient/representatives-overview'], {
-      queryParams: {patientId: this.patientId}
+      queryParams: { patientId: this.patientId }
     })
   }
 
