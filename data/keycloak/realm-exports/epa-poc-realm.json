@@ -694,7 +694,7 @@
       "saml.onetimeuse.condition" : "false"
     },
     "authenticationFlowBindingOverrides" : {
-      "browser" : "886ff2b1-82a0-4233-9946-4e84f654344f"
+      "browser" : "bfea753a-1ebd-4025-954a-8a4bfc8123fd"
     },
     "fullScopeAllowed" : true,
     "nodeReRegistrationTimeout" : -1,
@@ -1286,7 +1286,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-user-attribute-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "saml-user-property-mapper", "oidc-usermodel-attribute-mapper", "oidc-address-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "saml-user-property-mapper", "oidc-address-mapper" ]
       }
     }, {
       "id" : "54cd4921-9efd-4144-8aed-878ff5432108",
@@ -1322,7 +1322,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-sha256-pairwise-sub-mapper", "oidc-full-name-mapper", "oidc-usermodel-attribute-mapper", "saml-user-property-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-address-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-role-list-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper" ]
       }
     } ],
     "org.keycloak.userprofile.UserProfileProvider" : [ {
@@ -1380,7 +1380,7 @@
   "internationalizationEnabled" : false,
   "supportedLocales" : [ ],
   "authenticationFlows" : [ {
-    "id" : "1ee79b43-79b7-4ca0-933b-94e212642506",
+    "id" : "8b130331-9fb8-41de-adce-c8164736b0b8",
     "alias" : "Access Level 1",
     "description" : "Authentication Flow for Access-Level 1",
     "providerId" : "basic-flow",
@@ -1403,7 +1403,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "9db0adb0-44b2-4947-9c26-df840cdab725",
+    "id" : "a78da8af-5954-40d6-94f4-32253e4ffd67",
     "alias" : "Access Level 2",
     "description" : "Authentication Flow for Access-Level 2",
     "providerId" : "basic-flow",
@@ -1426,7 +1426,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "5352edc4-4f5d-479b-a267-0c8024103219",
+    "id" : "46c17ca4-f91e-4a42-93b1-34d664c91331",
     "alias" : "Access Level 3",
     "description" : "Authentication Flow for Access-Level 3",
     "providerId" : "basic-flow",
@@ -1456,7 +1456,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "1ba35316-29aa-48af-8b7c-385c211c50ce",
+    "id" : "ef863010-b49e-494c-9a7d-93e8ba1d189c",
     "alias" : "Account verification options",
     "description" : "Method with which to verity the existing account",
     "providerId" : "basic-flow",
@@ -1478,7 +1478,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "9954192b-aa1c-4d56-b171-1e081b39fb20",
+    "id" : "afc0bf11-762a-4379-89d2-d21d13d60201",
     "alias" : "Authentication Options",
     "description" : "Authentication options.",
     "providerId" : "basic-flow",
@@ -1507,7 +1507,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "61544d8b-537d-4dcc-bb0a-dc4cd5f39296",
+    "id" : "c7723874-3596-4603-9673-ac16fda367e2",
     "alias" : "Browser - Conditional OTP",
     "description" : "Flow to determine if the OTP is required for the authentication",
     "providerId" : "basic-flow",
@@ -1529,7 +1529,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "886ff2b1-82a0-4233-9946-4e84f654344f",
+    "id" : "bfea753a-1ebd-4025-954a-8a4bfc8123fd",
     "alias" : "Browser: epa-poc",
     "description" : "browser based authentication",
     "providerId" : "basic-flow",
@@ -1565,7 +1565,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "958243a1-391b-4a96-ad91-9532acb48e8f",
+    "id" : "f22e7bac-2bdd-4364-b223-40528fb7a2df",
     "alias" : "Custom Login forms",
     "description" : "Username, password, otp and other auth forms.",
     "providerId" : "basic-flow",
@@ -1594,7 +1594,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "74bb6f15-4b8a-482b-bc9d-054ffa7d07fb",
+    "id" : "86867f9e-f5c7-434a-a302-112312f91f60",
     "alias" : "Direct Grant - Conditional OTP",
     "description" : "Flow to determine if the OTP is required for the authentication",
     "providerId" : "basic-flow",
@@ -1616,7 +1616,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "f51d6d55-d232-40c3-a019-210088a2e6d3",
+    "id" : "0a7fb0d2-958e-4c1a-8da0-f7b90308335f",
     "alias" : "First broker login - Conditional OTP",
     "description" : "Flow to determine if the OTP is required for the authentication",
     "providerId" : "basic-flow",
@@ -1638,7 +1638,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "f8984e86-648d-4bb9-ab45-654d47dad7e4",
+    "id" : "8bfb694b-9fd5-4ed6-8758-438c0d064ac4",
     "alias" : "Handle Existing Account",
     "description" : "Handle what to do if there is existing account with same email/username like authenticated identity provider",
     "providerId" : "basic-flow",
@@ -1660,7 +1660,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "6fe97c06-0483-4e69-845d-dc1c9b935930",
+    "id" : "490acb32-29f4-4881-8b55-72443a7e5290",
     "alias" : "OTP or Biometric WebAuth",
     "description" : "",
     "providerId" : "basic-flow",
@@ -1682,7 +1682,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "b5b2e970-703f-4abf-8a54-0d174e0c85b0",
+    "id" : "5e899583-b256-4257-8f16-29d80dc2297d",
     "alias" : "OTP or WebAuthN Passwordless",
     "description" : "",
     "providerId" : "basic-flow",
@@ -1704,7 +1704,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "202c4ec5-7fbb-4a43-ba31-7c4e8932ec6f",
+    "id" : "798f4b2c-8328-47a4-a49e-7c0d26cec233",
     "alias" : "Reset - Conditional OTP",
     "description" : "Flow to determine if the OTP should be reset or not. Set to REQUIRED to force.",
     "providerId" : "basic-flow",
@@ -1726,7 +1726,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "e0ef7845-ac44-40d5-88d5-e74ef81cee6a",
+    "id" : "861ae09a-48c1-47bc-81eb-20e8febb538a",
     "alias" : "User creation or linking",
     "description" : "Flow for the existing/non-existing user alternatives",
     "providerId" : "basic-flow",
@@ -1749,7 +1749,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "b76eaaca-2a41-42ae-85bc-42dc479186a7",
+    "id" : "bc8d25f9-10a1-49fc-8df6-829427cec740",
     "alias" : "Verify Existing Account by Re-authentication",
     "description" : "Reauthentication of existing account",
     "providerId" : "basic-flow",
@@ -1771,7 +1771,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "a241043c-a40c-4b0f-8c31-7174c1bc2d78",
+    "id" : "148d722d-ca66-4739-8954-50ec52023bbe",
     "alias" : "browser",
     "description" : "browser based authentication",
     "providerId" : "basic-flow",
@@ -1807,7 +1807,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "247750c8-b438-46e6-8efc-1bac7d51e052",
+    "id" : "8bee2904-4e34-4024-952b-e04e3197cf70",
     "alias" : "clients",
     "description" : "Base authentication for clients",
     "providerId" : "client-flow",
@@ -1843,7 +1843,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "388d3398-de42-400f-9237-cd3249ea2a89",
+    "id" : "13a0aa4b-f57c-4b9b-bb45-3bdb8796e85e",
     "alias" : "direct grant",
     "description" : "OpenID Connect Resource Owner Grant",
     "providerId" : "basic-flow",
@@ -1872,7 +1872,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "e3100a9c-349d-4b84-a462-a2b4f5e6a934",
+    "id" : "c89d0f9c-a1b4-411b-acc2-199fa5cc4b45",
     "alias" : "docker auth",
     "description" : "Used by Docker clients to authenticate against the IDP",
     "providerId" : "basic-flow",
@@ -1887,7 +1887,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "ce90d9d4-e5ec-45ae-bf36-b98d74ddf81d",
+    "id" : "96df2477-1339-4e3f-8200-bd3c004112e8",
     "alias" : "first broker login",
     "description" : "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
     "providerId" : "basic-flow",
@@ -1910,7 +1910,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "a7a599ec-5576-441a-a824-828f24643531",
+    "id" : "61c6990f-e8aa-4343-8910-6daa6c482388",
     "alias" : "forms",
     "description" : "Username, password, otp and other auth forms.",
     "providerId" : "basic-flow",
@@ -1932,7 +1932,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "1181a86d-fae3-4857-9c77-13e77a3f38e2",
+    "id" : "e054f7da-7962-4075-9179-e021febaa7ff",
     "alias" : "http challenge",
     "description" : "An authentication flow based on challenge-response HTTP Authentication Schemes",
     "providerId" : "basic-flow",
@@ -1954,7 +1954,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "f125fccd-dc83-46ec-9f2f-af396bc2b7f1",
+    "id" : "c19bd944-8fa3-47db-bfbe-f4f192056d08",
     "alias" : "registration",
     "description" : "registration flow",
     "providerId" : "basic-flow",
@@ -1970,7 +1970,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "3daaedad-c12e-4f4f-99a7-08b1ed6716ee",
+    "id" : "52623268-2a66-45e4-a131-119907373a86",
     "alias" : "registration form",
     "description" : "registration form",
     "providerId" : "form-flow",
@@ -2006,7 +2006,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "453ae21e-2a15-42f2-aed5-dd48a5714fa6",
+    "id" : "dc3751a3-d9fc-4934-a8a3-726fbe37781c",
     "alias" : "reset credentials",
     "description" : "Reset credentials for a user if they forgot their password or something",
     "providerId" : "basic-flow",
@@ -2042,7 +2042,7 @@
       "userSetupAllowed" : false
     } ]
   }, {
-    "id" : "0a7802e7-bd32-4567-92d8-b071abbf79cf",
+    "id" : "4dfe4fe2-259a-4d30-94ee-0dca8ecd0988",
     "alias" : "saml ecp",
     "description" : "SAML ECP Profile Authentication Flow",
     "providerId" : "basic-flow",
@@ -2058,41 +2058,41 @@
     } ]
   } ],
   "authenticatorConfig" : [ {
-    "id" : "8522cad9-a6e2-418b-8df7-edaae5ec9a03",
+    "id" : "f4331e8f-dcec-4e78-a942-303aa6b7940a",
     "alias" : "Level 1",
     "config" : {
       "loa-condition-level" : "1",
       "loa-max-age" : "36000"
     }
   }, {
-    "id" : "52ee155f-6f5a-415f-bf0a-e0530460616c",
+    "id" : "cfe6aa8a-28af-40e3-8ab8-99bfd787dd53",
     "alias" : "Level 1",
     "config" : {
       "loa-condition-level" : "1",
       "loa-max-age" : "36000"
     }
   }, {
-    "id" : "cb084dc0-e7c2-481f-8931-96d6c5295f2c",
+    "id" : "5751a991-3ddf-4fe5-8ad4-4ff44c38511d",
     "alias" : "Level 2",
     "config" : {
       "loa-condition-level" : "2",
       "loa-max-age" : "300"
     }
   }, {
-    "id" : "9f89aac6-fa15-4b1c-9968-bce3d7b208df",
+    "id" : "cd06878e-14d9-4397-aac1-9676f2a2cc63",
     "alias" : "Level 3",
     "config" : {
       "loa-condition-level" : "3",
       "loa-max-age" : "0"
     }
   }, {
-    "id" : "8ebb4ba1-363d-4b73-ac55-cf2f05cc7e93",
+    "id" : "7a480744-b5df-4fec-ae09-52ef882a7a84",
     "alias" : "create unique user config",
     "config" : {
       "require.password.update.after.registration" : "false"
     }
   }, {
-    "id" : "2c14c0f5-4f9e-4bf4-987a-4259c64d93c6",
+    "id" : "93e712f3-a551-413b-bd4e-cf92a275cbbe",
     "alias" : "review profile config",
     "config" : {
       "update.profile.on.first.login" : "missing"
@@ -2210,7 +2210,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "default-roles-epa-poc" ],
     "notBefore" : 0,
     "groups" : [ "/representative" ]
@@ -2219,7 +2219,7 @@
     "createdTimestamp" : 1655900203336,
     "username" : "damberg",
     "enabled" : true,
-    "totp" : true,
+    "totp" : false,
     "emailVerified" : true,
     "firstName" : "Deborah",
     "lastName" : "Amberg",
@@ -2230,20 +2230,6 @@
       "createdDate" : 1655900273362,
       "secretData" : "{\"value\":\"J0IDjJWICnKRMgudnFjvpqERVszIgY0DPVOuxnuqOX13mT2dWcclh/9fpFiroPiU/gp7KLGxB4TtXvn5j/PGcQ==\",\"salt\":\"dLpOEcS+xaKlQuAtVXf9zg==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    }, {
-      "id" : "de07b523-2cda-4122-9de3-ab85fbe7fcd0",
-      "type" : "otp",
-      "userLabel" : "iPhone",
-      "createdDate" : 1655917147322,
-      "secretData" : "{\"value\":\"ksmR4UF4LRxiQm4WC4F9\"}",
-      "credentialData" : "{\"subType\":\"totp\",\"digits\":6,\"counter\":0,\"period\":30,\"algorithm\":\"HmacSHA1\"}"
-    }, {
-      "id" : "6b564836-a769-47ab-9128-b64eabab596d",
-      "type" : "webauthn-passwordless",
-      "userLabel" : "MacBook",
-      "createdDate" : 1655917178350,
-      "secretData" : "{}",
-      "credentialData" : "{\"aaguid\":\"00000000-0000-0000-0000-000000000000\",\"credentialId\":\"jZsJFsmIYotRd9N0UqZ9v/JGN0o=\",\"counter\":0,\"credentialPublicKey\":\"pQECAyYgASFYIMvC9wH2PSSkfyWtz0ZtZ3T6w0H3q7iPGxKasWED4nvZIlggUt10avJC3k-bPa10OvWEUFOhGLX3JZi-AzhY-en0Wdk\",\"attestationStatementFormat\":\"none\",\"transports\":[]}"
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ "CONFIGURE_TOTP" ],
@@ -2268,7 +2254,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2290,7 +2276,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2312,7 +2298,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2334,7 +2320,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "default-roles-epa-poc" ],
     "notBefore" : 0,
     "groups" : [ "/representative" ]
@@ -2356,7 +2342,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2378,7 +2364,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2400,7 +2386,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2422,7 +2408,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2444,7 +2430,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2466,7 +2452,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2488,7 +2474,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "default-roles-epa-poc" ],
     "notBefore" : 0,
     "groups" : [ "/representative" ]
@@ -2510,7 +2496,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2532,7 +2518,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2554,7 +2540,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2576,7 +2562,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2598,7 +2584,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2620,7 +2606,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2642,7 +2628,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2664,7 +2650,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "default-roles-epa-poc" ],
     "notBefore" : 0,
     "groups" : [ "/representative" ]
@@ -2686,7 +2672,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2725,7 +2711,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2747,7 +2733,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2769,7 +2755,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
@@ -2791,7 +2777,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "doctor" ],
     "notBefore" : 0,
     "groups" : [ "/doctor" ]
@@ -2813,7 +2799,7 @@
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "CONFIGURE_TOTP", "webauthn-register-passwordless" ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]
