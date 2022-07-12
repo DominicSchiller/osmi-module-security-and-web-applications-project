@@ -26,11 +26,13 @@ docker-compose up
 
 ## URLS & Accounts
 
+### Frontend
 
+The Frontend can be accessed via http://localhost:8787
 
 ### Keycloak
 
-The Keycloak can be access via 
+The Keycloak can be accessed via 
 http://localhost:8181
 
 | Username     | Password | Bemerkung                                                   |
