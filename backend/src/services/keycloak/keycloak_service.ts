@@ -20,14 +20,25 @@ export class KeycloakService {
     //</editor-fold>
 
     //<editor-fold desc="Properties">
-    private rootUrl: string = "http://localhost"
-    private port: number = 8181
-    private epaPoCRealm: string = "realms/epa-poc"
+    private readonly rootUrl: string
+    private readonly port: number
+    private readonly epaPoCRealm: string = "realms/epa-poc"
 
     //</editor-fold>
 
     //<editor-fold desc="Init">
-    private constructor() {}
+    private constructor() {
+        switch (process.env.NODE_ENV) {
+            case 'production':
+                this.rootUrl = 'http://keycloak'
+                this.port = 8080
+                break
+            default:
+                this.rootUrl = 'http://localhost'
+                this.port = 8181
+                break
+        }
+    }
     //</editor-fold>
 
     //<editor-fold desc="Keycloak API">

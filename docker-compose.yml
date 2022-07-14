@@ -1,9 +1,5 @@
 version: 2.5.1
 
-networks:
-  mongo-compose-network:
-    driver: bridge
-
 volumes:
   mariadb_data:
     driver: local
@@ -88,8 +84,6 @@ services:
       - ./data/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     ports:
       - ${MONGODB_PORT}:${MONGODB_PORT}
-    networks: 
-      - mongo-compose-network
     env_file: env/mongodb.${RUN_ENV}.env
   # NoSQL DBMS
   mongo-express:
@@ -98,8 +92,6 @@ services:
     restart: always
     ports:
       - ${MONGODB_EXPRESS_PORT}:${MONGODB_EXPRESS_PORT}
-    networks: 
-      - mongo-compose-network
     env_file: env/mongo-express.${RUN_ENV}.env
     depends_on:
       - mongo
@@ -111,8 +103,6 @@ services:
     image: dominicschiller/poc-epa-backend
     ports:
       - ${EPA_BACKEND_PORT}:${EPA_BACKEND_PORT}
-    networks: 
-      - mongo-compose-network
     restart: on-failure:3
     env_file: env/backend.${RUN_ENV}.env
     depends_on: 

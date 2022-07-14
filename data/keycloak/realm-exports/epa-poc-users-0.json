@@ -137,7 +137,7 @@
     "createdTimestamp" : 1655899924763,
     "username" : "ffreytag",
     "enabled" : true,
-    "totp" : true,
+    "totp" : false,
     "emailVerified" : false,
     "firstName" : "Franziska",
     "lastName" : "Freytag",
@@ -148,16 +148,9 @@
       "createdDate" : 1655899935493,
       "secretData" : "{\"value\":\"rJaqfkPzsKZQhq0Do9YQ33q1+DDrHzcvQTgPk4tZ+g7UDyF8xkWex/TPXVzm6h/uZbm73i4glqwFF5JreSQdKw==\",\"salt\":\"YFAsQLvKAbD7gEo1rcLIBw==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    }, {
-      "id" : "f21b3b25-9ef6-457c-a84f-708924f2b5df",
-      "type" : "otp",
-      "userLabel" : "",
-      "createdDate" : 1657829550912,
-      "secretData" : "{\"value\":\"Jc8z9nVFDc8sDth12yjA\"}",
-      "credentialData" : "{\"subType\":\"totp\",\"digits\":6,\"counter\":0,\"period\":30,\"algorithm\":\"HmacSHA1\"}"
     } ],
     "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
+    "requiredActions" : [ "CONFIGURE_TOTP" ],
     "realmRoles" : [ "patient" ],
     "notBefore" : 0,
     "groups" : [ "/patient" ]

@@ -20,14 +20,25 @@ export class OPAService {
     //</editor-fold>
 
     //<editor-fold desc="Properties">
-    private rootUrl: string = "http://localhost"
-    private port: number = 8282
-    private epaPocDataPath: string = "v1/data/epapoc"
+    private readonly rootUrl: string
+    private readonly port: number
+    private readonly epaPocDataPath: string = "v1/data/epapoc"
 
     //</editor-fold>
 
     //<editor-fold desc="Init">
-    private constructor() {}
+    private constructor() {
+        switch (process.env.NODE_ENV) {
+            case 'production':
+                this.rootUrl = 'http://opa'
+                this.port = 8181
+                break
+            default:
+                this.rootUrl = 'http://localhost'
+                this.port = 8282
+                break
+        }
+    }
     //</editor-fold>
 
     //<editor-fold desc="Keycloak API">
