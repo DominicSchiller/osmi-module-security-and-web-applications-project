@@ -12,7 +12,7 @@
   <ion-list mode="ios" class="representatives-list">
     <ion-list-header>Aktive Vertretungen</ion-list-header>
 
-    <ion-item *ngFor="let representative of representatives | async">
+    <ion-item *ngFor="let representative of representatives | async" class="representative-item">
       <ion-avatar slot="start">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-avatar>
@@ -20,9 +20,9 @@
         <h2>{{getFullName(representative)}}</h2>
         <p>{{getAddress(representative)}}</p>
       </ion-label>
-      <ion-button 
-        slot="end" size="default" 
-        mode="ios" color="danger" class="list-item-action-button" 
+      <ion-button
+        slot="end" size="default"
+        mode="ios" color="danger" class="list-item-action-button"
         (click)="presentDeleteRepresentativeAlert(representative)">
         <ion-icon name="close-circle"></ion-icon>
         Vertretung beenden

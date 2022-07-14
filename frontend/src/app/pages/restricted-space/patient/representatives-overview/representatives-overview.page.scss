@@ -8,11 +8,15 @@
         ion-list-header {
             margin-bottom: 16px;
         }
-    
+
         ion-icon {
             font-size: 2.4rem;
         }
-    
+
+        .representative-item {
+          --min-height: 100px
+        }
+
         .list-item-action-button {
             ion-icon {
                 font-size: 1.4rem;
@@ -20,7 +24,7 @@
             }
         }
     }
-    
+
     .large-action-button {
         ion-icon {
             margin-right: 16px;
