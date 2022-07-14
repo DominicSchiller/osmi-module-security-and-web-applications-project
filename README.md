@@ -8,29 +8,47 @@ Proof-of-Concept project assignments to the module Security and Web-Applications
 
 The overall task is the implementation of a proof of concept for using step-up authentication with OAuth using Keycloak and the Open Policy Agent (OPA).
 The "research question" behind this task is to clarify how step-up authentication with OAuth can enable secure and user-friendly access to sensitive data. 
-To demonstrate this on a concrete application scenario, we have chosen the electronic patient record management as a example in a very abstract and hence simplified version.
+To demonstrate this on a concrete application scenario, we have chosen the electronic patient record management as an example in a very abstract and hence simplified version.
 
 
 
 ## Prerequisites
 
-In order to setup and run the PoC environment via docker, make sure you have both Docker (i.e. via [Docker Desktop](https://www.docker.com/products/docker-desktop/)) and [Docker-Compose](https://docs.docker.com/compose/install/compose-desktop/) locally installed on your machine. Please note, Docker-Compose will be automatically installed with Docker-Desktop on macOS and Windows.
+In order to set up and run the PoC environment via docker, make sure you have both Docker (i.e. via [Docker Desktop](https://www.docker.com/products/docker-desktop/)) and [Docker-Compose](https://docs.docker.com/compose/install/compose-desktop/) locally installed on your machine. Please note, Docker-Compose will be automatically installed with Docker-Desktop on macOS and Windows.
 
-To setup and boot the overall container setup, just run the following command in the checked-out repository's root directory:
+## How to run
+
+To start the POC and boot the overall container setup, just run the following command in the checked-out repository's root directory:
 
 ```bash
 docker-compose up
 ```
 
+## How to test
+### OPA policies tests
+- To test the OPA policies, make sure you have OPA installed as instructed [here](https://www.openpolicyagent.org/docs/latest/#running-opa).
+- In the `data/opa/policies` folder, run the command ` ./opa test .`. The output should look like this:
+> PASS: 31/31
+
+- To see more test details, run the tests in verbose mode with `./opa test -v .`. 
+- To see the test coverage, run the tests with `./opa test -c .`.
+### Backend tests
+- Postman collection: 
+
+### User journey tests
+- After starting the POC with `docker-compose up`, open the frontend in a browser. The URL can be found in the "URLS & Accounts" section underneath or in "Docker Desktop"
+- Login to a patient account with the credentials in the "Sample Data" section underneath
 
 
 ## URLS & Accounts
 
+### Frontend
 
+The Frontend can be accessed via http://localhost:8787
 
 ### Keycloak
 
-The Keycloak can be access via 
+The Keycloak can be accessed via 
 http://localhost:8181
 
 | Username     | Password | Bemerkung                                                   |
