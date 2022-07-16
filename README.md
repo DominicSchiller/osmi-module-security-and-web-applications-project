@@ -33,12 +33,28 @@ If everything worked correctly, Docker-Desktop should look similar to the follow
 ## How to test
 
 ### OPA policies tests
-- To test the OPA policies, make sure you have OPA installed as instructed [here](https://www.openpolicyagent.org/docs/latest/#running-opa).
-- In the `data/opa/policies` folder, run the command ` ./opa test .`. The output should look like this:
-> PASS: 31/31
+- To test the OPA policies, make sure you have OPA installed as instructed [here](https://www.openpolicyagent.org/docs/latest/#running-opa). 
+  For linux and macOS operating systems, it is required that the local OPA executable binary is added system's `$PATH` variable to use it globally.
 
-- To see more test details, run the tests in verbose mode with `./opa test -v .`. 
-- To see the test coverage, run the tests with `./opa test -c .`.
+- In the `data/opa/policies` folder, run the command the following command to run all policy unit tests:
+
+  ```bash
+  opa test .
+  ```
+
+  The test output should then look like this:
+
+  > PASS: 31/31
+- To see more test details, run the tests in verbose mode with 
+
+  ```bash
+  opa test -v .
+  ```
+- To see the test coverage, run the tests with
+
+  ```bash
+  opa test -c .
+  ```
 ### OPA & Backend tests
 - In the project's `tests/curl/opa` folder, there are shell-scripts with implemented cURL-Requests having false or compromized request-data which can be sent to the OPA service
 - In the project's `tests/curl/backend` folder, there are shell-scripts with implemented cURL-Requests having false or compromized request-data which can be sent to the backend service
