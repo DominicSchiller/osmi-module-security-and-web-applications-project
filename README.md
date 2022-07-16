@@ -24,7 +24,7 @@ To start the POC and boot the overall container setup, just run the following sh
 docker-compose up
 ```
 
-If everything worked correctly, Docker-Desktop should look similar to the following screenshot (depending the operating system and Docker-Desktop version used):
+If everything worked correctly, Docker-Desktop should look similar to the following screenshot (depending the operating system and Docker-Desktop version used), which indicates everything has been setup and is up and running:
 
 ![docker-desktop-macos](./docs/screenshots/docker-desktop-macos.png)
 
