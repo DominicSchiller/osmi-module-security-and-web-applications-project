@@ -18,7 +18,7 @@ In order to set up and run the PoC environment via docker, make sure you have bo
 
 ## How to run
 
-To start the POC and boot the overall container setup, just run the following command in the checked-out repository's root directory:
+To start the POC and boot the overall container setup, just run the following shell command in the checked-out repository's root directory:
 
 ```bash
 docker-compose up
@@ -32,8 +32,9 @@ docker-compose up
 
 - To see more test details, run the tests in verbose mode with `./opa test -v .`. 
 - To see the test coverage, run the tests with `./opa test -c .`.
-### Backend tests
-- Postman collection: 
+### OPA & Backend tests
+- In the project's `tests/curl/opa` folder, there are shell-scripts with implemented cURL-Requests having false or compromized request-data which can be sent to the OPA service
+- In the project's `tests/curl/backend` folder, there are shell-scripts with implemented cURL-Requests having false or compromized request-data which can be sent to the backend service
 
 ### User journey tests
 - After starting the POC with `docker-compose up`, open the frontend in a browser. The URL can be found in the "URLS & Accounts" section underneath or in "Docker Desktop"
@@ -45,6 +46,9 @@ docker-compose up
 ### Frontend
 
 The Frontend can be accessed via http://localhost:8787
+
+> **Please Note**
+> Currently, the PoC-System only supports patient-related API endpoints, hence authentication and authorization only works for patient accounts i.e. through the frontend web-app.
 
 ### Keycloak
 
@@ -71,7 +75,7 @@ http://localhost:8081
 
 ## Sample Data
 
-
+In the project's directory `data/mongo` there's the mongoDB's init file `mongo-init.js` which initialzes the whole sample data used for the PoC. The sample accounts data itself rereference the account-IDs (sub-ID) from the keycloak realm data set which can be found in `data/keycloak/realm-exports`.
 
 ### Patients
 
@@ -87,8 +91,6 @@ http://localhost:8081
 | skappel   | test1234 | 79126fa6-4323-4376-8da8-46ec6dedbe02 |
 | swexler   | test1234 | 45215f7d-e7cd-47d4-a27c-6734b8f1424c |
 | tkortig   | test1234 | eab56c5a-f5be-4c86-8b1d-e2be8eeb80da |
-
-
 
 ### Doctors
 
