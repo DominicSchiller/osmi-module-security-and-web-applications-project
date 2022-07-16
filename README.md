@@ -24,7 +24,14 @@ To start the POC and boot the overall container setup, just run the following sh
 docker-compose up
 ```
 
+If everything has worked correctly, Docker-Desktop should look similar to the following (depending on your operating system):
+
+![docker-desktop-macos](./docs/screenshots/docker-desktop-macos.png)
+
+
+
 ## How to test
+
 ### OPA policies tests
 - To test the OPA policies, make sure you have OPA installed as instructed [here](https://www.openpolicyagent.org/docs/latest/#running-opa).
 - In the `data/opa/policies` folder, run the command ` ./opa test .`. The output should look like this:
