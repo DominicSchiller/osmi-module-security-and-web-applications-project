@@ -47,7 +47,7 @@ docker-compose up
 
 The Frontend can be accessed via http://localhost:8787
 
-> **Please Note**
+> **Please Note**<br />
 > Currently, the PoC-System only supports patient-related API endpoints, hence authentication and authorization only works for patient accounts i.e. through the frontend web-app.
 
 ### Keycloak
