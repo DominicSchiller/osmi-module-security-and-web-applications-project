@@ -9,6 +9,13 @@
                 margin-top: 8px;
                 margin-left: -1px;
             }
+
+          .record-content-preview {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
         }
     }
 }

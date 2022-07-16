@@ -11,7 +11,7 @@
   <div class="content-container">
     <ion-list mode="ios" class="records-list">
       <ion-list-header>Meine Dokumente</ion-list-header>
-  
+
         <ion-card mode="ios" *ngFor="let record of records | async" class="record-card">
           <ion-card-header>
             <ion-card-subtitle>{{getFormattedDate(record)}}</ion-card-subtitle>
@@ -20,8 +20,11 @@
               <ion-label>{{getDoctorFullName(record)}}</ion-label>
             </ion-chip>
           </ion-card-header>
-        
+
           <ion-card-content>
+            <div class="record-content-preview">
+              {{record.content}}
+            </div>
             <!-- <ion-grid>
               <ion-row>
                 <ion-col class="grid-row-title">Anschrift</ion-col>
