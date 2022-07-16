@@ -1,9 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Patient} from 'src/app/models/patient';
-import {PatientAPIService} from 'src/app/services/backend/patient_api_service';
 import {KeycloakService} from "../../services/keycloak/keycloak.service";
-import {EpaKeycloakAccessLevel} from "../../services/keycloak/epa-keycloak-access-level";
-import {BehaviorSubject, Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {KeycloakUserRole} from "../../services/keycloak/keycloak-user-role";
 
@@ -25,6 +21,11 @@ export class RestrictedSpacePage implements OnInit {
       switch (userInfo.role) {
         case KeycloakUserRole.patient:
           this.router.navigate(['/restricted-space/patient'], {
+            queryParams: {id: userInfo.id}
+          })
+          break
+        case KeycloakUserRole.doctor:
+          this.router.navigate(['/restricted-space/doctor'], {
             queryParams: {id: userInfo.id}
           })
           break
