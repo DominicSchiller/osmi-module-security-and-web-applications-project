@@ -88,7 +88,7 @@ In the project's directory `data/mongo` there's the mongoDB's init file `mongo-i
 
 | Username  | Password | ID                                   |
 | --------- | -------- | ------------------------------------ |
-| ffreytag  | test1234 | 3326d733-31fb-4313-8070-68c705accbd5 |
+| ffreytag* | test1234 | 3326d733-31fb-4313-8070-68c705accbd5 |
 | jfiedler  | test1234 | 03419e71-b4b3-43bc-ad9c-166b7912bd6e |
 | jschröder | test1234 | a7f6550d-80ce-4bc2-b6e9-434c014c8a8b |
 | kfischer  | test1234 | ed129ff3-5732-4d11-9ba6-39a53efd7386 |
@@ -98,6 +98,10 @@ In the project's directory `data/mongo` there's the mongoDB's init file `mongo-i
 | skappel   | test1234 | 79126fa6-4323-4376-8da8-46ec6dedbe02 |
 | swexler   | test1234 | 45215f7d-e7cd-47d4-a27c-6734b8f1424c |
 | tkortig   | test1234 | eab56c5a-f5be-4c86-8b1d-e2be8eeb80da |
+
+[^*]: This account was used as reference patient account for all frontend related tests as well as cURL-request related tests gainst OPA and Backend services.
+
+
 
 ### Doctors
 
