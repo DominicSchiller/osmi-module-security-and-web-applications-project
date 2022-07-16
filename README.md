@@ -99,7 +99,7 @@ In the project's directory `data/mongo` there's the mongoDB's init file `mongo-i
 | swexler      | test1234 | 45215f7d-e7cd-47d4-a27c-6734b8f1424c |
 | tkortig      | test1234 | eab56c5a-f5be-4c86-8b1d-e2be8eeb80da |
 
-[^*]: This account was used as reference patient account for all frontend related tests as well as cURL-request related tests gainst OPA and Backend services.
+[^*]: This patient account was used as reference account for all frontend as well as OPA/Backend service related tests.
 
 ### Doctors
 
