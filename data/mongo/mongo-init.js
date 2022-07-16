@@ -190,12 +190,12 @@ function createRepresentative(
 
 function createRecord(keycloakPatientId) {
     let patient = db.patients.findOne( {_id: keycloakPatientId} )
-    let recordType = getRandomRecordType()
-    let recordContent = getRecordContent(recordType)
 
     patient.doctors.forEach(doctorId => {
         let maxRecordsCount = getRandomNumber(1, getMaxRecordCount(patient.age))
         for(var i=0; i<=maxRecordsCount; i++) {
+            let recordType = getRandomRecordType()
+            let recordContent = getRecordContent(recordType)
             let recordResult = db.records.insertOne({
                 patient: keycloakPatientId,
                 doctor: doctorId,
