@@ -29,6 +29,11 @@ export class RestrictedSpacePage implements OnInit {
             queryParams: {id: userInfo.id}
           })
           break
+        case KeycloakUserRole.representative:
+          this.router.navigate(['/restricted-space/representative'], {
+            queryParams: {id: userInfo.id}
+          })
+          break
         default:
           break
       }

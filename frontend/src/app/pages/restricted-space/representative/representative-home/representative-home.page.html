@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vertretungsbereich</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button mode="ios" color="primary" (click)="logout()">
+        <ion-icon slot="end" name="log-out" color="primary"></ion-icon>
+        Ausloggen
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card button="false" mode="ios" color="warning" class="warning-card">
+    <ion-card-header>
+      <ion-card-subtitle>
+        <ion-icon name="warning"></ion-icon>
+      </ion-card-subtitle>
+      <ion-card-title>Hinweis</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Der vertretungsbereich für Patienten befindet sich noch in der Entwicklung und steht in dieser Version leider noch nicht zur Verfügung.<br />
+      Aktuell ist ausschließlich der Patientenbereich verwendbar.
+    </ion-card-content>
+  </ion-card>
+</ion-content>
